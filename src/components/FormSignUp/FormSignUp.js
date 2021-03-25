@@ -8,7 +8,7 @@ function FormSignUp() {
     const emailRef = React.useRef();
     const passwordRef = React.useRef();
     const passwordConfirmRef = React.useRef();
-    const {login} = useAuth();
+    const {signup} = useAuth();
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const history = useHistory();
@@ -18,7 +18,7 @@ function FormSignUp() {
         try {
             setError('');
             setLoading(true);
-            await login(emailRef.current.value, passwordRef.current.value);
+            await signup(emailRef.current.value, passwordRef.current.value);
             history.push('/');
         } catch {
             setError('Failed to log in');
@@ -29,38 +29,26 @@ function FormSignUp() {
     return (
         <>
             <div className='AuthContainer'>
+                <h1>Sign Up</h1>
+                {error && <alert>{error}</alert>}
                 <form className='AuthForm' onSubmit={handleSubmit}>
-                    <div className='InputFieldContainer'>       
-                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required >
-                                
-                        </input>
-                        <label className='InputLabel'>Email</label>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Email</label>       
+                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required /> 
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Password</label>       
+                        <input className='Field' type='password' placeholder='Password' ref={passwordRef} required /> 
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Password Confirmation</label>       
+                        <input className='Field' type='password' placeholder='Password Confirmation' ref={passwordConfirmRef} required /> 
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <button disabled={loading} buttonStyle='btn--primary' type='submit'>Sign Up</button>
                     </div>
                 </form>
-            </div>
-                    
-            <div className='form-container'>
-                <alert>{error}</alert>
-                <form className='form-signup' onSubmit={handleSubmit}>
-                    <label className='form-item' id='email'>
-                        Email 
-                        <input type='email' ref={emailRef} required/>
-                    </label>
-                    {/* <InputFieldContainer , Field */}
-                    
-                    <label className='form-item' id='password'>
-                        Password
-                        <input type='password' ref={passwordRef} required/>
-                    </label>
-                    <label className='form-item' id='password-confirm'>
-                        Password Confirmation
-                        <input type='password' ref={passwordConfirmRef} required/>
-                    </label>
-                    <input disabled={loading} type='submit' value='Sign Up'></input>
-                </form>
-                <div>
-                    Already have an account? <Link to ="/log-in">Log In</Link>
-                </div>
+                <div className='AuthText'>Already have an account <Link to='/log-in'>Log In</Link></div>
             </div>
         </>
     )
