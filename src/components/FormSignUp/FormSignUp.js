@@ -28,6 +28,17 @@ function FormSignUp() {
 
     return (
         <>
+            <div className='AuthContainer'>
+                <form className='AuthForm' onSubmit={handleSubmit}>
+                    <div className='InputFieldContainer'>       
+                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required >
+                                
+                        </input>
+                        <label className='InputLabel'>Email</label>
+                    </div>
+                </form>
+            </div>
+                    
             <div className='form-container'>
                 <alert>{error}</alert>
                 <form className='form-signup' onSubmit={handleSubmit}>
@@ -35,6 +46,8 @@ function FormSignUp() {
                         Email 
                         <input type='email' ref={emailRef} required/>
                     </label>
+                    {/* <InputFieldContainer , Field */}
+                    
                     <label className='form-item' id='password'>
                         Password
                         <input type='password' ref={passwordRef} required/>
