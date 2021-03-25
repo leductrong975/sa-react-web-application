@@ -7,7 +7,7 @@ function FormSignUp(props) {
     return (
         <>
             <div className='AuthContainer'>
-                <h1>Sign Up</h1>
+                <h1>{props.label}</h1>
                 {props.error && <alert>{props.error}</alert>}
                 <form className='AuthForm' onSubmit={props.handleSubmit}>
                     <div className='InputFieldContainer'>
