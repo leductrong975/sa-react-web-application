@@ -8,8 +8,8 @@ function HomePage() {
     return (
         <>
             <Campaign />
-            {/* <Cards/> */}
-            {/* <Footer /> */}
+            <Cards/>
+            <Footer />
         </>
     )
 }
