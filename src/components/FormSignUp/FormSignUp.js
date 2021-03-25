@@ -1,53 +1,29 @@
 import React from 'react';
 import '../../App.css';
-import {useAuth} from '../../contexts/AuthContext/AuthContext';
-import {Link, useHistory} from 'react-router-dom';
 import './FormSignUp.css';
 
-function FormSignUp() {
-    const emailRef = React.useRef();
-    const passwordRef = React.useRef();
-    const passwordConfirmRef = React.useRef();
-    const {login} = useAuth();
-    const [error, setError] = React.useState('');
-    const [loading, setLoading] = React.useState(false);
-    const history = useHistory();
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-        try {
-            setError('');
-            setLoading(true);
-            await login(emailRef.current.value, passwordRef.current.value);
-            history.push('/');
-        } catch {
-            setError('Failed to log in');
-        }
-        setLoading(false);
-    }
+function FormSignUp(props) {
 
     return (
         <>
             <div className='form-container'>
-                <alert>{error}</alert>
-                <form className='form-signup' onSubmit={handleSubmit}>
+                <alert>{props.error}</alert>
+                <form className='form-signup' onSubmit={props.handleSubmit}>
                     <label className='form-item' id='email'>
-                        Email 
-                        <input type='email' ref={emailRef} required/>
+                        Email
+                        <input type='email' ref={props.emailRef} required />
                     </label>
                     <label className='form-item' id='password'>
                         Password
-                        <input type='password' ref={passwordRef} required/>
+                        <input type='password' ref={props.passwordRef} required />
                     </label>
                     <label className='form-item' id='password-confirm'>
                         Password Confirmation
-                        <input type='password' ref={passwordConfirmRef} required/>
+                        <input type='password' ref={props.passwordConfirmRef} required />
                     </label>
-                    <input disabled={loading} type='submit' value='Sign Up'></input>
+                    <input disabled={props.loading} type='submit' value='Sign Up'></input>
                 </form>
-                <div>
-                    Already have an account? <Link to ="/log-in">Log In</Link>
-                </div>
+
             </div>
         </>
     )

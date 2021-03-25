@@ -7,9 +7,9 @@ import Footer from '../components/Footer/Footer';
 function HomePage() {
     return (
         <>
-            <Campaign/>
-            <Cards/>
-            <Footer/>
+            <Campaign />
+            {/* <Cards/> */}
+            {/* <Footer /> */}
         </>
     )
 }
