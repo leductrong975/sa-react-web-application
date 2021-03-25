@@ -6,26 +6,52 @@ function FormSignUp(props) {
 
     return (
         <>
-            <div className='form-container'>
-                <alert>{props.error}</alert>
-                <form className='form-signup' onSubmit={props.handleSubmit}>
-                    <label className='form-item' id='email'>
-                        Email
-                        <input type='email' ref={props.emailRef} required />
-                    </label>
-                    <label className='form-item' id='password'>
-                        Password
-                        <input type='password' ref={props.passwordRef} required />
-                    </label>
-                    {props.label == 'Sign Up' ? <label className='form-item' id='password-confirm'>
-                        Password Confirmation
-                        <input type='password' ref={props.passwordConfirmRef} required />
-                    </label> : null}
-                    <input disabled={props.loading} type='submit' value={props.label}></input>
+            <div className='AuthContainer'>
+                <h1>Sign Up</h1>
+                {props.error && <alert>{props.error}</alert>}
+                <form className='AuthForm' onSubmit={props.handleSubmit}>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Email</label>
+                        <input className='Field' type='email' placeholder='Email' ref={props.emailRef} required />
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Password</label>
+                        <input className='Field' type='password' placeholder='Password' ref={props.passwordRef} required />
+                    </div>
+                    {props.label == 'Sign Up' ? <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Password Confirmation</label>
+                        <input className='Field' type='password' placeholder='Password Confirmation' ref={props.passwordConfirmRef} required />
+                    </div> : null}
+                    <div className='InputFieldContainer'>
+                        <button disabled={props.loading} buttonStyle='btn--primary' type='submit'>Sign Up</button>
+                    </div>
                 </form>
 
 
             </div>
+
+            {/* <div className='AuthContainer'>
+                <h1>Sign Up</h1>
+                {error && <alert>{error}</alert>}
+                <form className='AuthForm' onSubmit={handleSubmit}>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Email</label>
+                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required />
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Password</label>
+                        <input className='Field' type='password' placeholder='Password' ref={passwordRef} required />
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <label className='InputLabel'>Password Confirmation</label>
+                        <input className='Field' type='password' placeholder='Password Confirmation' ref={passwordConfirmRef} required />
+                    </div>
+                    <div className='InputFieldContainer'>
+                        <button disabled={loading} buttonStyle='btn--primary' type='submit'>Sign Up</button>
+                    </div>
+                </form>
+                <div className='AuthText'>Already have an account <Link to='/log-in'>Log In</Link></div>
+            </div> */}
         </>
     )
 }
