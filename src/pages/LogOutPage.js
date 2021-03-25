@@ -9,16 +9,21 @@ function LogOutPage() {
 
   function logOut() {
     logout()
-    history.push('/');
+    history.push('/')
+  }
+
+  function logIn() {
+    history.push('/log-in')
   }
 
   return (
     <>
-      <h1>XIN CHAO</h1>
-      <h1>{currentUser != null}</h1>
-      <button
+      <h1>{currentUser ? currentUser.email : 'You are not Login'}</h1>
+      {currentUser ? <button
         onClick={logOut}
-      >Log Out</button>
+      >Log Out</button> : <button
+        onClick={logIn}
+      >Login</button>}
 
     </>
 
