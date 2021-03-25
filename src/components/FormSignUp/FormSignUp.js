@@ -24,6 +24,7 @@ function FormSignUp(props) {
                     <input disabled={props.loading} type='submit' value={props.label}></input>
                 </form>
 
+
             </div>
         </>
     )
