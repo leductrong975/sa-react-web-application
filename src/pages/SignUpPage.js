@@ -26,6 +26,10 @@ function SignUpPage() {
         setLoading(false);
     }
 
+    const div = () => <div className='AuthText'>
+        Already have an account? <Link to="/log-in">Log In</Link>
+    </div>
+
     return (
         <>
             <FormSignUp
@@ -36,10 +40,11 @@ function SignUpPage() {
                 passwordConfirmRef={passwordConfirmRef}
                 loading={loading}
                 label={'Sign Up'}
+                div={div}
             />
-            <div>
+            {/* <div className='AuthText'>
                 Already have an account? <Link to="/log-in">Log In</Link>
-            </div>
+            </div> */}
         </>
 
 

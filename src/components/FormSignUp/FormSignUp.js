@@ -1,8 +1,11 @@
 import React from 'react';
 import '../../App.css';
 import './FormSignUp.css';
+import { Link, useHistory } from 'react-router-dom';
+
 
 function FormSignUp(props) {
+    const history = useHistory();
 
     return (
         <>
@@ -25,6 +28,9 @@ function FormSignUp(props) {
                     <div className='InputFieldContainer'>
                         <button disabled={props.loading} buttonStyle='btn--primary' type='submit'>Sign Up</button>
                     </div>
+                    {props.label == 'Sign Up' ? <div className='AuthText'>Already have an account? <Link to='/log-in'>Log In</Link></div> :
+                        <div className='AuthText'>Don't have an account? <Link to='/log-in'>Sign Up</Link></div>}
+
                 </form>
 
 

@@ -37,9 +37,6 @@ function LogInPage() {
         loading={loading}
         label={'Login'}
       />
-      <div>
-        New to the site? <Link to="/sign-up">Sign Up</Link>
-      </div>
     </>
 
 
