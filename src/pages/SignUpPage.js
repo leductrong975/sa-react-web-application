@@ -34,6 +34,7 @@ function SignUpPage() {
                 emailRef={emailRef}
                 passwordRef={passwordRef}
                 passwordConfirmRef={passwordConfirmRef}
+                loading={loading}
             />
             <div>
                 Already have an account? <Link to="/log-in">Log In</Link>
