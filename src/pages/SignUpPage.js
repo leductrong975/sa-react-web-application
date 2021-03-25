@@ -8,7 +8,7 @@ function SignUpPage() {
     const emailRef = React.useRef();
     const passwordRef = React.useRef();
     const passwordConfirmRef = React.useRef();
-    const { signUp } = useAuth();
+    const { signup } = useAuth();
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const history = useHistory();
@@ -18,7 +18,7 @@ function SignUpPage() {
         try {
             setError('');
             setLoading(true);
-            await signUp(emailRef.current.value, passwordRef.current.value);
+            await signup(emailRef.current.value, passwordRef.current.value);
             history.push('/');
         } catch {
             setError('Failed to sign up');
@@ -35,6 +35,7 @@ function SignUpPage() {
                 passwordRef={passwordRef}
                 passwordConfirmRef={passwordConfirmRef}
                 loading={loading}
+                label={'Sign Up'}
             />
             <div>
                 Already have an account? <Link to="/log-in">Log In</Link>

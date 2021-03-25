@@ -21,7 +21,7 @@ function FormSignUp(props) {
                         Password Confirmation
                         <input type='password' ref={props.passwordConfirmRef} required />
                     </label>
-                    <input disabled={props.loading} type='submit' value='Sign Up'></input>
+                    <input disabled={props.loading} type='submit' value={props.label}></input>
                 </form>
 
             </div>
