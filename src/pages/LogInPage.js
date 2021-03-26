@@ -1,7 +1,7 @@
 import React from 'react';
 import FormSignUp from '../components/FormSignUp/FormSignUp';
 import { useAuth } from '../contexts/AuthContext/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 function LogInPage() {

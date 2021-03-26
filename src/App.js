@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -7,11 +8,15 @@ import CampaignPage from './pages/CampaignPage';
 import LogInPage from './pages/LogInPage';
 import LogOutPage from './pages/LogOutPage';
 import SignUpPage from './pages/SignUpPage';
+import {useAuth} from './contexts/AuthContext/AuthContext';
+
 function App() {
+  const {currentUser} = useAuth();
+
   return (
     <>
       <BrowserRouter>
-        <Navbar/>
+        <Navbar currentUser={currentUser}/>
         <Switch>
           <Route path='/' exact component={HomePage}/>
           <Route path='/aboutus' exact component={AboutUsPage}/>

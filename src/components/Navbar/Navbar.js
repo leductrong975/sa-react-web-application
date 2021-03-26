@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar(props) {
     const [click, setClick] = React.useState(false);
     const checkingClick = () => setClick(!click);
     const closeMenu = () => setClick(false);
@@ -33,7 +33,7 @@ function Navbar() {
                             About Us
                         </Link>
                     </li>
-                    {click ? <li className='nav-item'>
+                    {props.currentUser === null ? <li className='nav-item'>
                         <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
                             Log In
                                 </Link>
