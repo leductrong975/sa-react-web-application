@@ -3,7 +3,7 @@
     align-items: center;
     margin: auto;
     margin-top: 100px;
-    width: 350px;
+    width: 500px;
     background: #ffffff;
     align-self: center;
     border: thin solid #a9a6a6;
@@ -65,7 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* gap: 5px; */
+    gap: 5px;
     border: none;
     outline: none;
     cursor: pointer;

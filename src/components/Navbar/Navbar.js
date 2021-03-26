@@ -33,7 +33,7 @@ function Navbar(props) {
                             About Us
                         </Link>
                     </li>
-                    {props.currentUser === null ? <li className='nav-item'>
+                    {props.currentUser === null? <li className='nav-item'>
                         <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
                             Log In
                                 </Link>

@@ -1,0 +1,59 @@
+.ProfileContainer {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 85px;
+    padding-bottom: 40px;
+    padding-left: 8%;
+    padding-right: 8%;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    gap: 80px;
+    border: thin solid #dbdbdb;
+}
+
+.ProfilePicture {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ProfileDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.ProfileDetails p {
+    font-size: 1.8rem;
+}
+
+.ProfileDetails button {
+    color: #262626;
+    width: 100%;
+    height: 50px;
+    padding: 8px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 5px; */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: large;
+    box-sizing: border-box;
+    border: thin solid #dbdbdb;
+}
+
+.ProfileDetails button:hover{
+    background-color: #262626;
+    color: white;
+}
+
