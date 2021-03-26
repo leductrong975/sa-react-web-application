@@ -41,7 +41,7 @@ function Navbar(props) {
                         :
                         <li className='nav-item'>
                             <Link to='/log-out' className='nav-links-mobile' onClick={closeMenu}>
-                                Log Out
+                                {props.currentUser.email}
                                 </Link>
                         </li>
                     }
