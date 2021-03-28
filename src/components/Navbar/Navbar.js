@@ -33,16 +33,17 @@ function Navbar(props) {
                             About Us
                         </Link>
                     </li>
-                    {props.currentUser === null? <li className='nav-item'>
-                        <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
-                            Log In
-                                </Link>
-                    </li>
+                    {props.currentUser === null ?
+                        <li className='nav-item'>
+                            <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
+                                Log In
+                            </Link>
+                        </li>
                         :
                         <li className='nav-item'>
                             <Link to='/log-out' className='nav-links-mobile' onClick={closeMenu}>
                                 {props.currentUser.email}
-                                </Link>
+                            </Link>
                         </li>
                     }
                 </ul>

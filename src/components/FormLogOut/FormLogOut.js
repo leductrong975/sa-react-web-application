@@ -2,12 +2,12 @@ import React from 'react';
 import '../../App.css';
 import './FormLogOut.css';
 
-function FormSignUp(props) {
+function FormLogOut(props) {
     return (
-        <>  
-            {props.currentUser ? 
+        <>
+            {props.currentUser ?
                 <div className='ProfileContainer'>
-                    <img src='/images/anonymous.jpg' alt='profile' className='ProfilePicture'/>
+                    <img src='/images/anonymous.jpg' alt='profile' className='ProfilePicture' />
                     <div className='ProfileDetails'>
                         <p>{props.currentUser.email}</p>
                         <button onClick={props.logOut}>Log Out</button>
@@ -25,4 +25,4 @@ function FormSignUp(props) {
     )
 }
 
-export default FormSignUp
+export default FormLogOut

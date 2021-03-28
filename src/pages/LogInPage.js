@@ -1,5 +1,5 @@
 import React from 'react';
-import FormSignUp from '../components/FormSignUp/FormSignUp';
+import AuthForm from '../components/AuthForm/AuthForm';
 import { useAuth } from '../contexts/AuthContext/AuthContext';
 import { useHistory } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ function LogInPage() {
 
   return (
     <>
-      <FormSignUp
+      <AuthForm
         error={error}
         handleSubmit={handleSubmit}
         emailRef={emailRef}

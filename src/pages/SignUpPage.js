@@ -1,7 +1,7 @@
 import React from 'react';
-import FormSignUp from '../components/FormSignUp/FormSignUp';
 import { useAuth } from '../contexts/AuthContext/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import AuthForm from '../components/AuthForm/AuthForm';
 
 
 function SignUpPage() {
@@ -32,7 +32,7 @@ function SignUpPage() {
 
     return (
         <>
-            <FormSignUp
+            <AuthForm
                 error={error}
                 handleSubmit={handleSubmit}
                 emailRef={emailRef}
