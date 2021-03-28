@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import './FormSignUp.css';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function FormSignUp(props) {
@@ -24,7 +24,7 @@ function FormSignUp(props) {
                         <input className='Field' type='password' placeholder='Password Confirmation' ref={props.passwordConfirmRef} required />
                     </div> : null}
                     <div className='InputFieldContainer'>
-                        <button disabled={props.loading} buttonStyle='btn--primary' type='submit'>Sign Up</button>
+                        <button disabled={props.loading} buttonStyle='btn--primary' type='submit'>{props.label === 'Sign Up' ? 'Sign Up' : 'Log In'}</button>
                     </div>
                     {props.label === 'Sign Up' ? <div className='AuthText'>Already have an account? <Link to='/log-in'>Log In</Link></div> :
                         <div className='AuthText'>Don't have an account? <Link to='/sign-up'>Sign Up</Link></div>}
