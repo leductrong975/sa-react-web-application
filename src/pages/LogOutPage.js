@@ -24,7 +24,7 @@ function LogOutPage() {
       >Log Out</button> : <button
         onClick={logIn}
       >Login</button>} */}
-      <FormLogOut currentUser={currentUser} logOut={logOut} logIn={logIn}/>
+      <FormLogOut currentUser={currentUser} logOut={logOut} logIn={logIn} />
     </>
   )
 }
