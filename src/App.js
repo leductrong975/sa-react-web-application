@@ -9,6 +9,7 @@ import LogInPage from './pages/LogInPage';
 import LogOutPage from './pages/LogOutPage';
 import SignUpPage from './pages/SignUpPage';
 import {useAuth} from './contexts/AuthContext/AuthContext';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function App() {
   const {currentUser} = useAuth();
@@ -24,6 +25,7 @@ function App() {
           <Route path='/log-in' exact component={LogInPage}/>
           <Route path='/log-out' exact component={LogOutPage}/>
           <Route path='/sign-up' exact component={SignUpPage}/>
+          <Route path='/reset-password' exact component={ResetPasswordPage}/>
         </Switch>
       </BrowserRouter>
     </>

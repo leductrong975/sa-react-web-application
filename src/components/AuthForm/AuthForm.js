@@ -26,7 +26,7 @@ function AuthForm(props) {
             'Don\'t have an account?',
             '/sign-up',
             'Sign Up'
-        ]
+        ] 
 
     const signUpCheck = () =>
         new RegExp('[a-z]').test(passwordRef.current.value) &&
@@ -101,6 +101,11 @@ function AuthForm(props) {
                         <button disabled={loading} buttonStyle='btn--primary' type='submit'>{props.label}</button>
                     </div>
 
+                    {props.label !== 'Sign Up' &&
+                        <div className='AuthText'>
+                            Forgot Password? <Link to='/reset-password'>Reset Password</Link>
+                        </div>
+                    }
                     <div className='AuthText'>
                         {alternative[0]} <Link to={alternative[1]}>{alternative[2]}</Link>
                     </div>
