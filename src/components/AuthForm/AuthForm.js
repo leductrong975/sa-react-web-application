@@ -29,9 +29,9 @@ function AuthForm(props) {
         ] 
 
     const signUpCheck = () =>
-        new RegExp('[a-z]').test(passwordRef.current.value) &&
-        new RegExp('[A-Z]').test(passwordRef.current.value) &&
-        new RegExp('[0-9]').test(passwordRef.current.value) &&
+        RegExp('[a-z]').test(passwordRef.current.value) &&
+        RegExp('[A-Z]').test(passwordRef.current.value) &&
+        RegExp('[0-9]').test(passwordRef.current.value) &&
         8 <= passwordRef.current.value.length <= 20
 
 
