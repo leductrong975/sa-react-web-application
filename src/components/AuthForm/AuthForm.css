@@ -89,4 +89,23 @@
 
 .PasswordError {
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1.1rem;
+    color: red;
+}
+
+.PasswordRequirement {
+    margin-top: 10px;
+    font-size: small;
+    color: grey;
+}
+
+.ShowPassword {
+    padding-left: 1.1rem;
+}
+
+.ShowPassword label {
+    margin-left: 10px;
 }
