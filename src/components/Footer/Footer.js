@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {MyButton} from '../MyButton/MyButton';
+import { MyButton } from '../MyButton/MyButton';
 import './Footer.css';
 
 function Footer() {
-    return (
-        <div className='footer-container'>
-            <section className='footer-subscription'>
-                <p className='footer-subcription-heading'>
-                    Join our newsletter to receive our best services.
+  return (
+    <div className='footer-container'>
+      <section className='footer-subscription'>
+        <p className='footer-subcription-heading'>
+          Join our newsletter to receive our best services.
                 </p>
-                <p className='footer-subscription-text'>
-                    You can unsubscribe at any time.
+        <p className='footer-subscription-text'>
+          You can unsubscribe at any time.
                 </p>
-                <div className='input-areas'>
-                    <form>
-                        <input type='email' name='email' placeholder='Your Email' className='footer-input'/>
-                        <MyButton buttonStyle='btn--outline'>Subscribe</MyButton>
-                    </form>
-                </div>
-            </section>
-            <div class='footer-links'>
+        <div className='input-areas'>
+          <form>
+            <input type='email' name='email' placeholder='Your Email' className='footer-input' />
+            <MyButton buttonStyle='btn--outline'>Subscribe</MyButton>
+          </form>
+        </div>
+      </section>
+      <div class='footer-links'>
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
             <h2>About Us</h2>
@@ -103,7 +103,7 @@ function Footer() {
         </div>
       </section>
     </div>
-    )
+  )
 }
 
 export default Footer;
