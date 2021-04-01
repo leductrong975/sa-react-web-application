@@ -18,6 +18,7 @@ function AuthForm(props) {
             setLoading(true)
             await resetPassword(emailRef.current.value)
             alert('Email reset password has been seen please check your email')
+            emailRef.current.value = '';
         } catch {
             setError(`Failed to ${props.label}`)
         }
