@@ -16,6 +16,9 @@ function AuthForm(props) {
     const { signup, login } = useAuth();
     const history = useHistory();
 
+    const email = 'pxviet1997@gmail.com'
+    const password = 'Padpxv96s'
+
     const alternative = props.label === 'Sign Up' ?
         [
             'Already have an account?',
@@ -26,7 +29,7 @@ function AuthForm(props) {
             'Don\'t have an account?',
             '/sign-up',
             'Sign Up'
-        ] 
+        ]
 
     const signUpCheck = () =>
         RegExp('[a-z]').test(passwordRef.current.value) &&
@@ -75,19 +78,19 @@ function AuthForm(props) {
                 <form className='AuthForm' onSubmit={handleSubmit}>
                     <div className='InputFieldContainer'>
                         <label className='InputLabel'>Email</label>
-                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required />
+                        <input className='Field' type='email' placeholder='Email' ref={emailRef} defaultValue={email} required />
                     </div>
 
                     <div className='InputFieldContainer'>
                         <label className='InputLabel'>Password</label>
-                        <input className='Field' type={check ? 'text' : 'password'} placeholder='Password' ref={passwordRef} required />
+                        <input className='Field' type={check ? 'text' : 'password'} placeholder='Password' ref={passwordRef} defaultValue={password} required />
                         {props.label === 'Sign Up' && <div className="PasswordRequirement">Use 8 characters or more with mix of characters and numbers</div>}
                     </div>
 
                     {props.label === 'Sign Up' &&
                         <div className='InputFieldContainer'>
                             <label className='InputLabel'>Password Confirmation</label>
-                            <input className='Field' type={check ? 'text' : 'password'} placeholder='Password Confirmation' ref={passwordConfirmRef} required />
+                            <input className='Field' type={check ? 'text' : 'password'} placeholder='Password Confirmation' ref={passwordConfirmRef} defaultValue={password} required />
                         </div>}
 
                     <div className="ShowPassword">
@@ -98,7 +101,7 @@ function AuthForm(props) {
                     <div className='PasswordError'>{error}</div>
 
                     <div className='InputFieldContainer'>
-                        <button disabled={loading} buttonStyle='btn--primary' type='submit'>{props.label}</button>
+                        <button disabled={loading} buttonstyle='btn--primary' type='submit'>{props.label}</button>
                     </div>
 
                     {props.label !== 'Sign Up' &&
