@@ -14,9 +14,10 @@ function AuthForm(props) {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            setError('');
+            setError('')
             setLoading(true)
             await resetPassword(emailRef.current.value)
+            alert('Email reset password has been seen please check your email')
         } catch {
             setError(`Failed to ${props.label}`)
         }
