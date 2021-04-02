@@ -13,8 +13,12 @@ function AuthForm(props) {
     const [check, setCheck] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [emailVerificationSent, setEmailVerificationSent] = useState('')
     const { signup, login } = useAuth();
     const history = useHistory();
+
+    const email = 'pxviet1997@gmail.com'
+    const password = 'Padpxv96'
 
     const alternative = props.label === 'Sign Up' ?
         [
@@ -26,7 +30,7 @@ function AuthForm(props) {
             'Don\'t have an account?',
             '/sign-up',
             'Sign Up'
-        ] 
+        ]
 
     const signUpCheck = () =>
         RegExp('[a-z]').test(passwordRef.current.value) &&
@@ -46,10 +50,15 @@ function AuthForm(props) {
             setError('');
             if (props.label !== 'Sign Up') {
                 setLoading(true)
-                await login(emailRef.current.value, passwordRef.current.value)
+                const verified = await login(emailRef.current.value, passwordRef.current.value)
+                if (!verified) {
+                    setError('Email is not verified!')
+                    setLoading(false)
+                    return
+                }
                 setLoading(false)
                 history.push('/')
-
+                return
             }
             if (!passwordConformationCheck()) {
                 setError('Password Conformation does not match!')
@@ -61,10 +70,11 @@ function AuthForm(props) {
             }
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            setEmailVerificationSent('A Verification Email has been sent to your inbox!')
             setLoading(false)
-            history.push('/')
-        } catch {
-            setError(`Failed to ${props.label}`)
+        } catch (e) {
+            setError(`Failed to ${props.label}! Check your email and password again!`)
+            setLoading(false)
         }
     }
 
@@ -75,19 +85,19 @@ function AuthForm(props) {
                 <form className='AuthForm' onSubmit={handleSubmit}>
                     <div className='InputFieldContainer'>
                         <label className='InputLabel'>Email</label>
-                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required />
+                        <input className='Field' type='email' placeholder='Email' ref={emailRef} defaultValue={email} required />
                     </div>
 
                     <div className='InputFieldContainer'>
                         <label className='InputLabel'>Password</label>
-                        <input className='Field' type={check ? 'text' : 'password'} placeholder='Password' ref={passwordRef} required />
+                        <input className='Field' type={check ? 'text' : 'password'} placeholder='Password' ref={passwordRef} defaultValue={password} required />
                         {props.label === 'Sign Up' && <div className="PasswordRequirement">Use 8 characters or more with mix of characters and numbers</div>}
                     </div>
 
                     {props.label === 'Sign Up' &&
                         <div className='InputFieldContainer'>
                             <label className='InputLabel'>Password Confirmation</label>
-                            <input className='Field' type={check ? 'text' : 'password'} placeholder='Password Confirmation' ref={passwordConfirmRef} required />
+                            <input className='Field' type={check ? 'text' : 'password'} placeholder='Password Confirmation' ref={passwordConfirmRef} defaultValue={password} required />
                         </div>}
 
                     <div className="ShowPassword">
@@ -95,10 +105,11 @@ function AuthForm(props) {
                         <label>Show Password</label>
                     </div>
 
-                    <div className='PasswordError'>{error}</div>
+                    {error ? <div className='PasswordError'>{error}</div> : null}
+                    {emailVerificationSent ? <div className='EmailVerificationSent'>{emailVerificationSent}</div> : null}
 
                     <div className='InputFieldContainer'>
-                        <button disabled={loading} buttonStyle='btn--primary' type='submit'>{props.label}</button>
+                        <button disabled={loading} buttonstyle='btn--primary' type='submit'>{props.label}</button>
                     </div>
 
                     {props.label !== 'Sign Up' &&
@@ -116,3 +127,4 @@ function AuthForm(props) {
 }
 
 export default AuthForm
+
