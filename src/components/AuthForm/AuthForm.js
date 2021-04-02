@@ -13,6 +13,7 @@ function AuthForm(props) {
     const [check, setCheck] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [emailVerificationSent, setEmailVerificationSent] = useState('')
     const { signup, login } = useAuth();
     const history = useHistory();
 
@@ -51,7 +52,6 @@ function AuthForm(props) {
                 setLoading(true)
                 const verified = await login(emailRef.current.value, passwordRef.current.value)
                 if (!verified) {
-                    // console.log(emailVerified)
                     setError('Email is not verified!')
                     setLoading(false)
                     return
@@ -70,12 +70,11 @@ function AuthForm(props) {
             }
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            setEmailVerificationSent('A Verification Email has been sent to your inbox!')
             setLoading(false)
-            history.push('/')
         } catch (e) {
-            setError(`Failed to ${props.label}`)
-            console.log(e)
-            // setError(e)
+            setError(`Failed to ${props.label}! Check your email and password again!`)
+            setLoading(false)
         }
     }
 
@@ -106,7 +105,8 @@ function AuthForm(props) {
                         <label>Show Password</label>
                     </div>
 
-                    <div className='PasswordError'>{error}</div>
+                    {error ? <div className='PasswordError'>{error}</div> : null}
+                    {emailVerificationSent ? <div className='EmailVerificationSent'>{emailVerificationSent}</div> : null}
 
                     <div className='InputFieldContainer'>
                         <button disabled={loading} buttonstyle='btn--primary' type='submit'>{props.label}</button>

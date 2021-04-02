@@ -11,10 +11,10 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    async function signup(email, password) {
+    const signup = async (email, password) => {
         const newUser = await auth.createUserWithEmailAndPassword(email, password);
-        return await newUser.user.sendEmailVerification();
-        // return newUser
+        logout()
+        await newUser.user.sendEmailVerification();
     }
 
     async function login(email, password) {
