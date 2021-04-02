@@ -17,8 +17,8 @@ function AuthForm(props) {
     const { signup, login } = useAuth();
     const history = useHistory();
 
-    const email = 'pxviet1997@gmail.com'
-    const password = 'Padpxv96'
+    // const email = 'pxviet1997@gmail.com'
+    // const password = 'Padpxv96'
 
     const alternative = props.label === 'Sign Up' ?
         [
@@ -85,19 +85,19 @@ function AuthForm(props) {
                 <form className='AuthForm' onSubmit={handleSubmit}>
                     <div className='InputFieldContainer'>
                         <label className='InputLabel'>Email</label>
-                        <input className='Field' type='email' placeholder='Email' ref={emailRef} defaultValue={email} required />
+                        <input className='Field' type='email' placeholder='Email' ref={emailRef} required />
                     </div>
 
                     <div className='InputFieldContainer'>
                         <label className='InputLabel'>Password</label>
-                        <input className='Field' type={check ? 'text' : 'password'} placeholder='Password' ref={passwordRef} defaultValue={password} required />
+                        <input className='Field' type={check ? 'text' : 'password'} placeholder='Password' ref={passwordRef} required />
                         {props.label === 'Sign Up' && <div className="PasswordRequirement">Use 8 characters or more with mix of characters and numbers</div>}
                     </div>
 
                     {props.label === 'Sign Up' &&
                         <div className='InputFieldContainer'>
                             <label className='InputLabel'>Password Confirmation</label>
-                            <input className='Field' type={check ? 'text' : 'password'} placeholder='Password Confirmation' ref={passwordConfirmRef} defaultValue={password} required />
+                            <input className='Field' type={check ? 'text' : 'password'} placeholder='Password Confirmation' ref={passwordConfirmRef} required />
                         </div>}
 
                     <div className="ShowPassword">
