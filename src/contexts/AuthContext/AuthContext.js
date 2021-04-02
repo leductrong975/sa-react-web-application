@@ -11,19 +11,23 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password)
-            .then((newUser) => newUser.user.sendEmailVerification())
+    async function signup(email, password) {
+        const newUser = await auth.createUserWithEmailAndPassword(email, password);
+        return await newUser.user.sendEmailVerification();
         // return newUser
     }
 
-    function login(email, password) {
-        return auth.signInWithEmailAndPassword(email, password);
+    async function login(email, password) {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password)
+        console.log(userCredential.user.emailVerified)
+        if (!userCredential.user.emailVerified) {
+            logout()
+        }
+        return userCredential.user.emailVerified
     }
 
-    function logout() {
-        return auth.signOut();
-    }
+    const logout = () => auth.signOut()
+
 
     function resetPassword(email) {
         return auth.sendPasswordResetEmail(email);

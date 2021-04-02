@@ -17,7 +17,7 @@ function AuthForm(props) {
     const history = useHistory();
 
     const email = 'pxviet1997@gmail.com'
-    const password = 'Padpxv96s'
+    const password = 'Padpxv96'
 
     const alternative = props.label === 'Sign Up' ?
         [
@@ -49,10 +49,16 @@ function AuthForm(props) {
             setError('');
             if (props.label !== 'Sign Up') {
                 setLoading(true)
-                await login(emailRef.current.value, passwordRef.current.value)
+                const verified = await login(emailRef.current.value, passwordRef.current.value)
+                if (!verified) {
+                    // console.log(emailVerified)
+                    setError('Email is not verified!')
+                    setLoading(false)
+                    return
+                }
                 setLoading(false)
                 history.push('/')
-
+                return
             }
             if (!passwordConformationCheck()) {
                 setError('Password Conformation does not match!')
@@ -66,8 +72,10 @@ function AuthForm(props) {
             await signup(emailRef.current.value, passwordRef.current.value)
             setLoading(false)
             history.push('/')
-        } catch {
+        } catch (e) {
             setError(`Failed to ${props.label}`)
+            console.log(e)
+            // setError(e)
         }
     }
 
@@ -119,3 +127,4 @@ function AuthForm(props) {
 }
 
 export default AuthForm
+
