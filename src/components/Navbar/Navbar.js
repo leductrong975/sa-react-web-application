@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext/AuthContext';
 import './Navbar.css';
 
 function Navbar(props) {
     const [click, setClick] = React.useState(false);
     const checkingClick = () => setClick(!click);
     const closeMenu = () => setClick(false);
+    const { currentUser } = useAuth()
 
     return (
         <nav className='navbar'>
@@ -33,7 +35,7 @@ function Navbar(props) {
                             About Us
                         </Link>
                     </li>
-                    {props.currentUser === null ?
+                    {currentUser === null ?
                         <li className='nav-item'>
                             <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
                                 Log In
@@ -42,7 +44,7 @@ function Navbar(props) {
                         :
                         <li className='nav-item'>
                             <Link to='/log-out' className='nav-links-mobile' onClick={closeMenu}>
-                                {props.currentUser.email}
+                                {currentUser.email}
                             </Link>
                         </li>
                     }
