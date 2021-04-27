@@ -1,13 +1,13 @@
 import React from 'react'
 import '../App.css';
-import app from '../firebase';
-
+// import app from '../firebase';
+import NewCampaign from '../components/NewCampaign/NewCampaign'
 function CampaginPage() {
-    const db = app.firestore();
+    // const db = app.firestore();
 
     return (
         <>
-            <h1>Our Recently Campaigns</h1>
+            <NewCampaign></NewCampaign>
         </>
     )
 }
