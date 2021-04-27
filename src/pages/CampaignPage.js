@@ -1,6 +1,15 @@
-import React from 'react';
+import React from 'react'
 import '../App.css';
+import app from '../firebase';
 
-export default function Products() {
-    return <h1 className="product">Our Recently Campaigns</h1>
+function CampaginPage() {
+    const db = app.firestore();
+
+    return (
+        <>
+            <h1>Our Recently Campaigns</h1>
+        </>
+    )
 }
+
+export default CampaginPage;
