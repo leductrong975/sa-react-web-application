@@ -4,28 +4,30 @@ import '../../App.css';
 import { MyButton } from '../MyButton/MyButton';
 import app from '../../firebase';
 import 'firebase/firestore';
-function Campaign() {
-    const db = app.firestore();
-    const getMyArticles = () => {
-        db.collection('Articles').limit(8).get().then(docs => {
-            let allArticles = []
-            docs.forEach(function(doc) {
-                const article = {
-                    id: doc.id,
-                    ...doc.data()
-                }
-                allArticles.push(article)
-            })
 
-            this.setState( {
-                articles: allArticles
-            }, () => {
-                this.setState( {
-                    isLoaded: true
-                })
-            })
-        })
-    }
+function Campaign() {
+    // const db = app.firestore();
+    // const [articles, setArticles] = useState({isLoaded})
+    // const getMyArticles = () => {
+    //     db.collection('Articles').limit(8).get().then(docs => {
+    //         let allArticles = []
+    //         docs.forEach(function(doc) {
+    //             const article = {
+    //                 id: doc.id,
+    //                 ...doc.data()
+    //             }
+    //             allArticles.push(article)
+    //         })
+
+    //         this.setState( {
+    //             articles: allArticles
+    //         }, () => {
+    //             this.setState( {
+    //                 isLoaded: true
+    //             })
+    //         })
+    //     })
+    // }
 
     return (
         <div className='campaign-container'>

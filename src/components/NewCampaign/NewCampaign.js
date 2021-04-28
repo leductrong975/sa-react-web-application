@@ -3,7 +3,7 @@ import './NewCampaign.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import app, { auth } from '../../firebase';
-import classes from '*.module.css';
+// import classes from '*.module.css';
 
 const db = app.firestore();
 class NewCampaign extends Component{
@@ -96,6 +96,13 @@ class NewCampaign extends Component{
     //     setCampaign({title: titleRef.current.value, content: contentRef.current.value});
     //     console.log(campaign);
     // }
+    uploadImageCallBack = (e) => {
+        return new Promise(async (resolve, reject) => {
+            const file = e.target.files[0]
+                
+        })
+    }
+
     render () {
         return (
             <>
@@ -118,7 +125,7 @@ class NewCampaign extends Component{
                             <input 
                                 type='file' 
                                 accept='image/*' 
-                                className={classes.ImageUploader}
+                                // className={classes.ImageUploader}
                                 onChange={async (e) => {
                                     const uploadState = await this.uploadImageCallBack(e)
                                     if (uploadState.success) {
