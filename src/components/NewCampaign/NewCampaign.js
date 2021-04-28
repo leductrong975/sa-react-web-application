@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import './NewCampaign.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { auth } from '../../firebase';
+import app, { auth } from '../../firebase';
+import classes from '*.module.css';
+
+const db = app.firestore();
 class NewCampaign extends Component{
     constructor(props) {
         super(props);
@@ -74,7 +77,7 @@ class NewCampaign extends Component{
 
     onClickPublish = (value) => {
         const article = this.state.article;
-        article.createUserID = this.props.auth.uid;
+        article.createUserID = auth.currentUser.uid;
         console.log(article);
         this.setState({
             article: {
@@ -82,6 +85,12 @@ class NewCampaign extends Component{
                 isPublish: false
             }
         })
+
+        db.collection("Articles")
+            .add(article).then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err))
     }
     // function handleSubmit(e) {
     //     setCampaign({title: titleRef.current.value, content: contentRef.current.value});
@@ -105,7 +114,24 @@ class NewCampaign extends Component{
                                 onChange={(e) => this.onChangeCampaignTitle(e.target.value)}
                                 value={this.state.article.title}
                             />
-
+                            <label className='InputLabel'>Feature Image</label>
+                            <input 
+                                type='file' 
+                                accept='image/*' 
+                                className={classes.ImageUploader}
+                                onChange={async (e) => {
+                                    const uploadState = await this.uploadImageCallBack(e)
+                                    if (uploadState.success) {
+                                        this.setState({
+                                            hasFeatureImage: true,
+                                            article: {
+                                                ...this.state.article,
+                                                featureImage: uploadState.data.link
+                                            }
+                                        })
+                                    }
+                                }}
+                            />
                             <ReactQuill 
                                 ref={(el) => this.quill = el}
                                 value={this.state.article.content} 

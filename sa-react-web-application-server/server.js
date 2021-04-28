@@ -10,7 +10,7 @@ admin.initializeApp({
 
 app.get('/setAdmin', async (req, res) => {
   admin.auth()
-    .setCustomUserClaims('KdJEGiH03bXRL9CbBYTBAt9bhxP2', {
+    .setCustomUserClaims('NRo7k2yWuKdQplstd0hJpApqXAI2', {
       type:'administrator'
     }).then(() => console.log('done'))
 })
