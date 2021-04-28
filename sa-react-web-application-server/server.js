@@ -7,3 +7,12 @@ const serviceAccount = require("./auth-phantomtec-development-firebase-adminsdk-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
+
+app.get('/setAdmin', async (req, res) => {
+  admin.auth()
+    .setCustomUserClaims('KdJEGiH03bXRL9CbBYTBAt9bhxP2', {
+      type:'administrator'
+    }).then(() => console.log('done'))
+})
+
+app.listen(4000, () => console.log('listening on port 4000'))

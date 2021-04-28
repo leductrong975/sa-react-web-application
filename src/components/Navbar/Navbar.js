@@ -35,13 +35,20 @@ function Navbar(props) {
                             About Us
                         </Link>
                     </li>
+                    {props.adminRole ? 
+                        <li className='nav-item'>
+                            <Link to='/adminonly' className='nav-links' onClick={closeMenu}>
+                                Admin Only
+                            </Link>
+                        </li> : null
+                    }
                     {currentUser === null ?
                         <li className='nav-item'>
                             <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
                                 Log In
                             </Link>
                         </li>
-                        :
+                        : 
                         <li className='nav-item'>
                             <Link to='/log-out' className='nav-links-mobile' onClick={closeMenu}>
                                 {currentUser.email}

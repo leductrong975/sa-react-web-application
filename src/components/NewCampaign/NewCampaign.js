@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './NewCampaign.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
+import { auth } from '../../firebase';
 class NewCampaign extends Component{
     constructor(props) {
         super(props);
@@ -73,6 +73,9 @@ class NewCampaign extends Component{
     }
 
     onClickPublish = (value) => {
+        const article = this.state.article;
+        article.createUserID = this.props.auth.uid;
+        console.log(article);
         this.setState({
             article: {
                 ...this.state.article,
@@ -113,8 +116,8 @@ class NewCampaign extends Component{
                         </div>
                     </form>
                     <div className='InputFieldContainer'>
-                        <button buttonstyle='btn--primary' onClick={(e) => this.onClickPublish(e)}>Create New Campaign</button>
-                        <button buttonstyle='btn--primary' onClick={(e) => console.log(this.state.article)}>Check</button>
+                        <button buttonstyle='btn--primary' onClick={(e) => this.onClickPublish()}>Create New Campaign</button>
+                        
                     </div>
                 </div>
             </>
