@@ -43,15 +43,17 @@ function ListCampaigns() {
                     return (
                       <>
                         {a.isPublish ?
-                          <ul className="cards__items">
-                            <ListCampaignItem
-                              src={a.featureImage}
-                              text={a.content}
-                              label={a.title}
-                              path={'/campaign-page-detail/' + a.id}
-                            >
-                            </ListCampaignItem>
-                          </ul>
+                          a.createUserID == app.auth().currentUser.uid ?
+                            <ul className="cards__items">
+                              <ListCampaignItem
+                                src={a.featureImage}
+                                text={a.content}
+                                label={a.title}
+                                path={'/campaign-page-detail/' + a.id}
+                              >
+                              </ListCampaignItem>
+                            </ul>
+                            : ''
                           : ''
                         }
                       </>
