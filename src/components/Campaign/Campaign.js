@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Campaign.css';
 import '../../App.css';
 import { MyButton } from '../MyButton/MyButton';
 import 'firebase/firestore';
-
+import { useAuth } from '../../contexts/AuthContext/AuthContext';
 import { useHistory } from 'react-router-dom';
 
 
 function Campaign() {
+    const { setPage } = useAuth;
     // const db = app.firestore();
     // const [articles, setArticles] = useState({isLoaded})
     // const getMyArticles = () => {
@@ -32,6 +33,7 @@ function Campaign() {
     // }
     const history = useHistory();
     const onClick = () => {
+        setPage('lkvn;lnvlwkkva');
         history.push('/campaign-page-detail');
     };
 

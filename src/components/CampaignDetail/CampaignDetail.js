@@ -1,10 +1,25 @@
-import React from 'react';
 import test from './test.jpg';
 import './CampaignDetail.css';
 import { MyButton } from '../MyButton/MyButton';
-
+import { useLocation } from 'react-router-dom';
+import { React, useEffect } from 'react';
+import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext/AuthContext';
+import app, { auth } from '../../firebase';
 
 function CampaignDetail() {
+  // const location = useLocation();
+  const [data, setData] = useState();
+  const db = app.firestore();
+  const { currentCampaignPage } = useAuth();
+  const getData = async () => {
+    const campaign = await db.collection('campaigns').where('createUserID', '==', currentCampaignPage);
+    setData(campaign);
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <div className="CampaignDetail">
@@ -12,7 +27,7 @@ function CampaignDetail() {
         <div className="CampaignDetailContent">
           <div className='row'>
             <div className='column1'>
-              <h1>CAMPAIGN TITLE</h1>
+              <h1>{data.title}</h1>
               <div>Campaign Poster</div>
             </div>
             <div className='column2'>

@@ -7,14 +7,14 @@
   margin-top: 10px;
 }
 
-.CampaignDetailContent div {
+.column1 div {
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: small;
   color: grey;
 }
 
-.CampaignDetailContent p {
+.column1 p {
   text-align: justify;
   font-size: 20px
 }
@@ -24,12 +24,12 @@
 }
 
 .column1 {
-  /* flex-direction: row; */
   flex: 80%;
 }
 .column2 {
   flex: 20%;
   text-align: right;
+  align-content: center;
 }
 
 .CampaignDetailImage {
