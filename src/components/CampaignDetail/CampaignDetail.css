@@ -1,0 +1,37 @@
+.CampaignDetail {
+  margin: 90px;
+}
+
+.CampaignDetailContent h1 {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.CampaignDetailContent div {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: small;
+  color: grey;
+}
+
+.CampaignDetailContent p {
+  text-align: justify;
+  font-size: 20px
+}
+
+.row {
+  display: flex;
+}
+
+.column1 {
+  /* flex-direction: row; */
+  flex: 80%;
+}
+.column2 {
+  flex: 20%;
+  text-align: right;
+}
+
+.CampaignDetailImage {
+  max-width: 100%;
+}

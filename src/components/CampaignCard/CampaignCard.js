@@ -1,6 +1,6 @@
 import React from 'react'
-import CardItem from './CardItem/CardItem';
-import './Cards.css';
+import CardItem from './CampaignCardItem/CampaignCardItem';
+import './CampaignCard.css';
 
 function Cards() {
     return (
@@ -9,13 +9,13 @@ function Cards() {
             <div className="cards__container">
                 <div className="cards__wrapper">
                     <ul className="cards__items">
-                        <CardItem 
+                        <CardItem
                             src="images/socialawareness1.jpeg"
                             text="Social Awareness 1"
                             label='Label 1'
                             path='/campaign'
                         />
-                        <CardItem 
+                        <CardItem
                             src="images/socialawareness2.jpeg"
                             text="Social Awareness 2"
                             label='Label 2'
@@ -23,13 +23,13 @@ function Cards() {
                         />
                     </ul>
                     <ul className="cards__items">
-                        <CardItem 
+                        <CardItem
                             src="images/socialawareness3.jpeg"
                             text="Social Awareness 3"
                             label='Label 3'
                             path='/campaign'
                         />
-                        <CardItem 
+                        <CardItem
                             src="images/socialawareness4.jpeg"
                             text="Social Awareness 4"
                             label='Label 4'

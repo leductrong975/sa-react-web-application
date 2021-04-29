@@ -2,8 +2,10 @@ import React from 'react'
 import './Campaign.css';
 import '../../App.css';
 import { MyButton } from '../MyButton/MyButton';
-import app from '../../firebase';
 import 'firebase/firestore';
+
+import { useHistory } from 'react-router-dom';
+
 
 function Campaign() {
     // const db = app.firestore();
@@ -28,6 +30,10 @@ function Campaign() {
     //         })
     //     })
     // }
+    const history = useHistory();
+    const onClick = () => {
+        history.push('/campaign-page-detail');
+    };
 
     return (
         <div className='campaign-container'>
@@ -35,7 +41,7 @@ function Campaign() {
             <h1>SOCIAL AWARENESS</h1>
             <p>What are you waiting for?</p>
             <div className='campaign-buttons'>
-                <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
+                <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large' onClick={onClick}>
                     Join Us
                 </MyButton>
                 <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>

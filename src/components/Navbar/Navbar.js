@@ -26,8 +26,8 @@ function Navbar(props) {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/campaign' className='nav-links' onClick={closeMenu}>
-                            Campaign
+                        <Link to='/create-campaign' className='nav-links' onClick={closeMenu}>
+                            Create Campaign
                         </Link>
                     </li>
                     <li className='nav-item'>
@@ -35,7 +35,7 @@ function Navbar(props) {
                             About Us
                         </Link>
                     </li>
-                    {props.adminRole ? 
+                    {props.adminRole ?
                         <li className='nav-item'>
                             <Link to='/adminonly' className='nav-links' onClick={closeMenu}>
                                 Admin Only
@@ -48,7 +48,7 @@ function Navbar(props) {
                                 Log In
                             </Link>
                         </li>
-                        : 
+                        :
                         <li className='nav-item'>
                             <Link to='/log-out' className='nav-links-mobile' onClick={closeMenu}>
                                 {currentUser.email}
