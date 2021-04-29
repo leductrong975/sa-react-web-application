@@ -1,16 +1,16 @@
 import React from 'react'
 import '../App.css';
 // import app from '../firebase';
-import NewCampaign from '../components/NewCampaign/NewCampaign'
+import CreateCampaign from '../components/CreateCampaign/CreateCampaign'
 
 function CampaginPage() {
-    // const db = app.firestore();
+  // const db = app.firestore();
 
-    return (
-        <>
-            <NewCampaign></NewCampaign>
-        </>
-    )
+  return (
+    <>
+      <CreateCampaign />
+    </>
+  )
 }
 
 export default CampaginPage;
