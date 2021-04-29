@@ -1,8 +1,8 @@
 import React from 'react'
 import CampaignCardItem from './CampaignCardItem/CampaignCardItem';
-import './CampaignCard.css';
+import './CampaignCards.css';
 
-function Cards() {
+function CampaignCards() {
     return (
         <div className='cards'>
             <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1>
@@ -42,4 +42,4 @@ function Cards() {
     )
 }
 
-export default Cards;
+export default CampaignCards;
