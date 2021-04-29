@@ -23,12 +23,10 @@ function App() {
       }
     })
   };
-  // console.log(adminRole);
 
   return (
     <AuthProvider>
       <BrowserRouter>
-        {/* <Navbar currentUser={currentUser} /> */}
         <Navbar adminRole={adminRole} />
         <Switch>
           <Route path='/' exact component={HomePage} />

@@ -11,7 +11,7 @@ function ListCampaigns() {
 
     useEffect(() => {
         getMyArticles()
-    })
+    }, []);
 
     const getMyArticles = () => {
         db.collection('Articles')
@@ -21,17 +21,19 @@ function ListCampaigns() {
                 if (!docs.empty) {
                     let allArticles = []
                     docs.forEach(doc => {
-                            allArticles.push({
-                                id: doc.id,
-                                ...doc.data()
-                            })
-                    })
-                    setArticles(allArticles)
-                    setIsLoaded(true)        
+                        allArticles.push({
+                            id: doc.id,
+                            ...doc.data()
+                        });
+                        // console.log('hi');
+                        // console.log(doc.id);
+                    });
+                    setArticles(allArticles);
+                    setIsLoaded(true);
                 } else {
                     setArticles([])
-                    setIsLoaded(true) 
-                }  
+                    setIsLoaded(true)
+                }
             })
     }
 
@@ -41,7 +43,7 @@ function ListCampaigns() {
                 <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1>
                 <div className="cards__container">
                     <div className="cards__wrapper">
-                        
+
                         {
                             isLoaded ?
                                 articles.length > 0 ?
@@ -49,26 +51,27 @@ function ListCampaigns() {
                                         return (
                                             <>
                                                 {a.isPublish ?
-                                                    <ul className="cards__items"> 
-                                                        <ListCampaignItem 
+                                                    <ul className="cards__items">
+                                                        <ListCampaignItem
                                                             src={a.featureImage}
                                                             text={a.content}
                                                             label={a.title}
-                                                            path={'/adminonly/edit-campaign/'+a.id}
+                                                            // path={'/adminonly/edit-campaign/'+a.id}
+                                                            path={'/campaign-page-detail/' + a.id}
                                                         >
                                                         </ListCampaignItem>
-                                                    </ul>    
-                                                : ''
+                                                    </ul>
+                                                    : ''
                                                 }
-                                            </> 
+                                            </>
                                         )
                                     })
-                                : "article not found "
-                            : "loading"
-                        } 
+                                    : "article not found "
+                                : "loading"
+                        }
                     </div>
                 </div>
-            </div>    
+            </div>
         </>
     )
 }

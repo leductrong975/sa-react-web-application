@@ -8,18 +8,13 @@ import { useAuth } from '../../contexts/AuthContext/AuthContext';
 import app, { auth } from '../../firebase';
 
 function CampaignDetail() {
-  // const location = useLocation();
   const [data, setData] = useState({});
   const { createUserID } = useParams();
   const db = app.firestore();
-  const { currentCampaignPage } = useAuth();
   const getData = async () => {
-    const campaign = await db.collection('campaigns').doc(createUserID);
-    // setData(campaign);
+    const campaign = await db.collection('Articles').doc(createUserID);
     const docData = (await campaign.get()).data();
-    // campaign.forEach((doc) => {
-    // })
-    console.log(docData);
+    // console.log(docData);
     setData(docData);
   }
   useEffect(() => {
@@ -29,7 +24,7 @@ function CampaignDetail() {
   return (
     <>
       <div className="CampaignDetail">
-        <img className="CampaignDetailImage" src={test} />
+        <img className="CampaignDetailImage" src={data.featureImage} />
         <div className="CampaignDetailContent">
           <div className='row'>
             <div className='column1'>
@@ -43,10 +38,13 @@ function CampaignDetail() {
             </div>
 
           </div>
+          <p>
+            {data.content}
+          </p>
 
-          <p>Lorem ipsum dolor sit amet, debitis lucilius expetendis eum eu, nec impedit electram ne. Et mazim vivendum vix, quo in inani aliquid accommodare. Cum ut modus atqui ornatus, sint quot commune ne mei. Sit appetere verterem ut, ad erat propriae persequeris usu. Nostro abhorreant ne vis, ex eros posse cum. Ex sit cibo nostro electram, an per omnis utinam commune.
+          {/* <p>Lorem ipsum dolor sit amet, debitis lucilius expetendis eum eu, nec impedit electram ne. Et mazim vivendum vix, quo in inani aliquid accommodare. Cum ut modus atqui ornatus, sint quot commune ne mei. Sit appetere verterem ut, ad erat propriae persequeris usu. Nostro abhorreant ne vis, ex eros posse cum. Ex sit cibo nostro electram, an per omnis utinam commune.
 
-Quot apeirian vivendum at vim, ornatus recteque argumentum vel at. Est dico cotidieque ei. Cum te expetenda torquatos, vix id reque adipisci appellantur. Ignota commodo ex cum, legimus accumsan sit ex, sed in illud solet. Legere commune in vis, no nihil aliquam luptatum vim, causae euripidis ei nam.</p>
+Quot apeirian vivendum at vim, ornatus recteque argumentum vel at. Est dico cotidieque ei. Cum te expetenda torquatos, vix id reque adipisci appellantur. Ignota commodo ex cum, legimus accumsan sit ex, sed in illud solet. Legere commune in vis, no nihil aliquam luptatum vim, causae euripidis ei nam.</p> */}
         </div>
 
       </div>
