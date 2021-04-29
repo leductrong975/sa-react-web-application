@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './NewCampaign.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import app, { auth } from '../../firebase';
-// import classes from '*.module.css';
+import app, { auth, storage } from '../../firebase';
+import Compressor from "compressorjs";
+import {v4 as uuidv4} from "uuid";
 
 const db = app.firestore();
 class NewCampaign extends Component{
@@ -17,6 +18,7 @@ class NewCampaign extends Component{
                 featureImage: '',
                 isPublish: false,
                 lastModified: new Date(),
+                hasFeatureImage: false,
                 createUserID: '',
             }
         }
@@ -96,10 +98,71 @@ class NewCampaign extends Component{
     //     setCampaign({title: titleRef.current.value, content: contentRef.current.value});
     //     console.log(campaign);
     // }
+
+    fileCompress = (file) => {
+        return new Promise(async (resolve, reject) => {
+            new Compressor(file, {
+                file: 'File',
+                quality: 0.5,
+                maxWidth: 1280,
+                maxHeight: 1280,
+                width: 1280,
+                height: 1280,
+                success(result) {
+                    return resolve({
+                        success: true,
+                        file: result
+                    })
+                },
+                error(err) {
+                    return resolve({
+                        success: false,
+                        message: err.message
+                    })
+                },
+            })
+        })
+    }
+
+    imageThumbnailCompress = (file) => {
+        return new Promise(async (resolve, reject) => {
+            new Compressor(file, {
+                file: 'File',
+                quality: 0.95,
+                maxWidth: 450,
+                maxHeight: 450,
+                width: 450,
+                height: 450,
+                success(result) {
+                    return resolve({
+                        success: true,
+                        file: result
+                    })
+                },
+                error(err) {
+                    return resolve({
+                        success: false,
+                        message: err.message
+                    })
+                },
+            })
+        })
+    }
+
     uploadImageCallBack = (e) => {
         return new Promise(async (resolve, reject) => {
             const file = e.target.files[0]
+            const fileName = uuidv4()
+            storage.ref().child("Articles/" + fileName).put(file)
+            .then(async snapshot => {
                 
+                const downloadURL = await storage.ref().child("Articles/" + fileName).getDownloadURL()
+                console.log(downloadURL)
+                resolve({
+                    success: true,
+                    data: {link: downloadURL}
+                })
+            })        
         })
     }
 
@@ -125,7 +188,6 @@ class NewCampaign extends Component{
                             <input 
                                 type='file' 
                                 accept='image/*' 
-                                // className={classes.ImageUploader}
                                 onChange={async (e) => {
                                     const uploadState = await this.uploadImageCallBack(e)
                                     if (uploadState.success) {
@@ -139,6 +201,9 @@ class NewCampaign extends Component{
                                     }
                                 }}
                             />
+                            {this.state.hasFeatureImage ? 
+                                <img src={this.state.article.featureImage} className="FeatureImg"/> : ''
+                            }
                             <ReactQuill 
                                 ref={(el) => this.quill = el}
                                 value={this.state.article.content} 
