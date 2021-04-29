@@ -11,10 +11,10 @@ export const MyButton = ({ children, type, onClick, buttonStyle, buttonSize, lin
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
     return (
-        // <Link to='/' className='btn-mobile'>
-        <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
-            {children}
-        </button>
-        // </Link>
+        <Link to='/' className='btn-mobile'>
+            <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
+                {children}
+            </button>
+        </Link>
     )
 }

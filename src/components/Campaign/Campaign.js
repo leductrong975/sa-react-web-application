@@ -8,14 +8,6 @@ import { useHistory } from 'react-router-dom';
 
 
 function Campaign() {
-    const { currentCampaignPage, setPage } = useAuth();
-    const history = useHistory();
-
-    const onClick = () => {
-        setPage('lkvn;lnvlwkkva');
-        console.log(currentCampaignPage);
-        history.push('/campaign-page-detail/Campaign 3');
-    };
 
     return (
         <div className='campaign-container'>
@@ -23,7 +15,7 @@ function Campaign() {
             <h1>SOCIAL AWARENESS</h1>
             <p>What are you waiting for?</p>
             <div className='campaign-buttons'>
-                <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large' onClick={onClick}>
+                <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
                     Join Us
                 </MyButton>
                 <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>

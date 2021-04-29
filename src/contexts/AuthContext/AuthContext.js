@@ -10,7 +10,6 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
-    const [currentCampaignPage, setCurrentCampaignPage] = useState('');
 
     const signup = async (email, password) => {
         const newUser = await auth.createUserWithEmailAndPassword(email, password);
@@ -34,15 +33,6 @@ export function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email);
     }
 
-    function setPage(page) {
-        // console.log(page);
-        setCurrentCampaignPage(page);
-        // console.log(currentCampaignPage);
-        // currentCampaignPage = page;
-        console.log(currentCampaignPage);
-
-    }
-
     useEffect(() => {
         // const unsubscribe = auth.onAuthStateChanged(user => {
         auth.onAuthStateChanged(user => {
@@ -57,9 +47,7 @@ export function AuthProvider({ children }) {
         signup,
         login,
         logout,
-        resetPassword,
-        currentCampaignPage,
-        setPage
+        resetPassword
     }
 
     return (
