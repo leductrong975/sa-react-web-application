@@ -5,6 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 import app, { auth, storage } from '../../firebase';
 import Compressor from "compressorjs";
 import {v4 as uuidv4} from "uuid";
+import { useHistory } from 'react-router-dom';
 
 const db = app.firestore();
 class NewCampaign extends Component{
@@ -23,7 +24,7 @@ class NewCampaign extends Component{
             }
         }
     }
-
+    
     modules = {
         toolbar: {
             container: [
@@ -215,7 +216,7 @@ class NewCampaign extends Component{
                     </form>
                     <div className='InputFieldContainer'>
                         <button buttonstyle='btn--primary' onClick={(e) => this.onClickPublish()}>Create New Campaign</button>
-                        
+    
                     </div>
                 </div>
             </>

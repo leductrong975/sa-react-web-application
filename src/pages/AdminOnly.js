@@ -64,7 +64,7 @@ function AdminOnly() {
                                     src={a.featureImage}
                                     text={a.content}
                                     label={a.title}
-                                    path={'/adminonly/edit-campaign'+a.id}
+                                    path={'/adminonly/edit-campaign/'+a.id}
                                 >
                                 </CardItem>
                             )
