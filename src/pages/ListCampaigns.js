@@ -1,7 +1,10 @@
 import React from 'react';
 import '../App.css';
-import Testing from '../components/Utils/Testing';
 
 export default function ListCampaigns() {
-    return <Testing></Testing>
+    return (
+        <>
+            <h1>List Of Campaigns</h1>
+        </>
+    )
 }
