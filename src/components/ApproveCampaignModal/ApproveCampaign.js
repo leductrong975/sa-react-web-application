@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import {Trans, useTranslation} from "react-i18next";
-
+import React from 'react'
+import {Trans} from "react-i18next";
 
 const ApproveCampaignModal = (props) => {
-    const {t, i18n} = useTranslation()
 
     return (
         <dialog id="approveModal"
@@ -13,7 +11,7 @@ const ApproveCampaignModal = (props) => {
                 {/*Header*/}
                 <div className="flex w-full h-auto justify-center items-center">
                     <div className="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
-                        <Trans>ListArticle.article-remove</Trans>
+                        <Trans>ListCampaign.campaign-approve</Trans>
                     </div>
                     <div onClick={() => {
                         document.getElementsByTagName('body')[0].style.overflow = "scroll"
@@ -33,7 +31,7 @@ const ApproveCampaignModal = (props) => {
                 <div className="container mx-auto md:p-8">
                     <div className="text-center">
                         <div className="text-2xl block mb-8">
-                            <Trans>ListArticle.article-remove-des</Trans>
+                            <Trans>ListCampaign.campaign-not-approve</Trans>
                         </div>
 
                         <div className='block'>
@@ -44,7 +42,7 @@ const ApproveCampaignModal = (props) => {
                                         props.approveCampaign()
                                     }}
                             >
-                                <Trans>ListArticle.confirm</Trans>
+                                <Trans>ListCampaign.confirm</Trans>
                             </button>
 
                             <button className="rounded text-gray-900 bg-gray-100 py-2 px-4 mx-4"
@@ -53,7 +51,7 @@ const ApproveCampaignModal = (props) => {
                                     document.getElementById('approveModal').close()
                                 }}
                             >
-                                <Trans>ListArticle.cancel</Trans>
+                                <Trans>ListCampaign.cancel</Trans>
                             </button>
                         </div>
                     </div>

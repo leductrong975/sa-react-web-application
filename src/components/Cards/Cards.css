@@ -7,6 +7,14 @@
     text-align: center;
   }
   
+  span {
+    text-align: center;
+  }
+
+  button{
+    text-align: center;
+  }
+
   .cards__container {
     display: flex;
     flex-flow: column;

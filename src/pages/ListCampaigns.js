@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import CardItem from '../components/Cards/CardItem/CardItem';
+import ListCampaignItem from '../components/ListCampaignItem/ListCampaignItem';
 import app from '../firebase';
 import 'firebase/firestore';
 
@@ -37,28 +37,38 @@ function ListCampaigns() {
 
     return (
         <>
-            {
-                isLoaded ?
-                    articles.length > 0 ?
-                        articles.map((a, index) => {
-                            return (
-                                <div>
-                                    {a.isPublish ? 
-                                        <CardItem 
-                                            src={a.featureImage}
-                                            text={a.content}
-                                            label={a.title}
-                                            path={'/adminonly/edit-campaign/'+a.id}
-                                        >
-                                        </CardItem>
-                                        : ''
-                                    }
-                                </div> 
-                            )
-                        })
-                    : "article not found "
-                : "loading"
-            }    
+            <div className='cards'>
+                <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1>
+                <div className="cards__container">
+                    <div className="cards__wrapper">
+                        
+                        {
+                            isLoaded ?
+                                articles.length > 0 ?
+                                    articles.map((a, index) => {
+                                        return (
+                                            <>
+                                                {a.isPublish ?
+                                                    <ul className="cards__items"> 
+                                                        <ListCampaignItem 
+                                                            src={a.featureImage}
+                                                            text={a.content}
+                                                            label={a.title}
+                                                            path={'/adminonly/edit-campaign/'+a.id}
+                                                        >
+                                                        </ListCampaignItem>
+                                                    </ul>    
+                                                : ''
+                                                }
+                                            </> 
+                                        )
+                                    })
+                                : "article not found "
+                            : "loading"
+                        } 
+                    </div>
+                </div>
+            </div>    
         </>
     )
 }
