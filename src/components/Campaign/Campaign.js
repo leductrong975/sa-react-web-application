@@ -8,33 +8,13 @@ import { useHistory } from 'react-router-dom';
 
 
 function Campaign() {
-    const { setPage } = useAuth;
-    // const db = app.firestore();
-    // const [articles, setArticles] = useState({isLoaded})
-    // const getMyArticles = () => {
-    //     db.collection('Articles').limit(8).get().then(docs => {
-    //         let allArticles = []
-    //         docs.forEach(function(doc) {
-    //             const article = {
-    //                 id: doc.id,
-    //                 ...doc.data()
-    //             }
-    //             allArticles.push(article)
-    //         })
-
-    //         this.setState( {
-    //             articles: allArticles
-    //         }, () => {
-    //             this.setState( {
-    //                 isLoaded: true
-    //             })
-    //         })
-    //     })
-    // }
+    const { currentCampaignPage, setPage } = useAuth();
     const history = useHistory();
+
     const onClick = () => {
         setPage('lkvn;lnvlwkkva');
-        history.push('/campaign-page-detail');
+        console.log(currentCampaignPage);
+        history.push('/campaign-page-detail/Campaign 3');
     };
 
     return (

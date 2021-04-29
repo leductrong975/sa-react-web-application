@@ -38,7 +38,7 @@ function App() {
           <Route path='/log-in' exact component={LogInPage} />
           <Route path='/log-out' exact component={LogOutPage} />
           <Route path='/sign-up' exact component={SignUpPage} />
-          <Route path='/campaign-page-detail' exact component={CampaignDetailPage} />
+          <Route path='/campaign-page-detail/:createUserID' exact component={CampaignDetailPage} />
           <Route path='/reset-password' exact component={ResetPasswordPage} />
         </Switch>
       </BrowserRouter>
