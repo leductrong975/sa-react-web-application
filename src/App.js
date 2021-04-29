@@ -32,7 +32,7 @@ function App() {
         <Navbar adminRole={adminRole} />
         <Switch>
           <Route path='/' exact component={HomePage} />
-          <Route path='/listcampaigns' exact component={ListCampaigns} />
+          {currentUser ? <Route path='/listcampaigns' exact component={ListCampaigns}/>: null}
           {adminRole ? <Route path='/adminonly' exact component={AdminOnly} /> : null}
           <Route path='/create-campaign' exact component={CreateCampaignPage} />
           <Route path='/log-in' exact component={LogInPage} />

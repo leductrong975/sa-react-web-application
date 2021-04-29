@@ -76,7 +76,7 @@ function CampaignCards() {
                             <td className="td__ne">
                               <Link className="cards__item__link" to={'/adminonly/edit-campaign/' + a.id}>
                                 Click Here
-                                                                </Link>
+                              </Link>
                             </td>
                           </tr>
                           : ''

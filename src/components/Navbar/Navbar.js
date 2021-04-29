@@ -30,11 +30,14 @@ function Navbar(props) {
                             Create Campaign
                         </Link>
                     </li>
+                    {currentUser ?
                     <li className='nav-item'>
                         <Link to='/listcampaigns' className='nav-links' onClick={closeMenu}>
                             List Campaign
                         </Link>
                     </li>
+                    :''
+                    }
                     {props.adminRole ?
                         <li className='nav-item'>
                             <Link to='/adminonly' className='nav-links' onClick={closeMenu}>
