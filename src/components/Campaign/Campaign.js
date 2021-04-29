@@ -11,7 +11,7 @@ function Campaign() {
 
     return (
         <div className='campaign-container'>
-            <video src='/' autoPlay loop muted />
+            <video src='/videos/video1.mp4' autoPlay loop muted />
             <h1>SOCIAL AWARENESS</h1>
             <p>What are you waiting for?</p>
             <div className='campaign-buttons'>

@@ -4,3 +4,29 @@
   padding: 0;
   font-family: 'PT Sans', sans-serif;
 }
+
+.list__of__campaigns {
+  text-align: center;
+}
+
+.button__approve {
+  margin: 10px 20px 20px 20px;
+  width: 100px;
+  height: 30px;
+}
+
+.button__not__approve {
+  margin: 10px 20px 20px 20px;
+  width: 100px;
+  height: 30px;
+}
+
+.button__approve:hover {
+  background-color:green;
+  color: white;
+}
+
+.button__not__approve:hover {
+  background-color:red;
+  color: white;
+}
