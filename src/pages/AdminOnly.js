@@ -15,27 +15,25 @@ function AdminOnly() {
   const [approveArticleID, setApproveArticleID] = useState("");
   const history = useHistory();
 
-
-  const getMyArticles = async () => {
-    const docs = await db.collection('Articles').get();
-    if (docs.empty) {
-      setIsLoaded(true);
-      return;
-    }
-    let allArticles = [];
-    docs.forEach(doc => {
-      allArticles.push({
-        id: doc.id,
-        ...doc.data()
-      });
-    });
-    setArticles(allArticles);
-    setIsLoaded(true);
-  }
-
   useEffect(() => {
-    getMyArticles()
-  }, []);
+    const getMyArticles = async () => {
+      const docs = await db.collection('Articles').get();
+      if (docs.empty) {
+        setIsLoaded(true);
+        return;
+      }
+      let allArticles = [];
+      docs.forEach(doc => {
+        allArticles.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      setArticles(allArticles);
+      setIsLoaded(true);
+    }
+    getMyArticles();
+  }, [db]);
 
   const removeCampaign = async () => {
     if (removeArticleID !== '') {

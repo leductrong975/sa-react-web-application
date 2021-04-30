@@ -23,16 +23,10 @@
     width: 100%;
     padding: 1.1rem;
     box-sizing: border-box;
-    /* position: relative; */
     margin-bottom: 5px;
 }
 
 .InputLabel {
-    /* position: absolute;
-    top: 10%;
-    left: 10px;
-    transition: all 0.3s ease-in-out;
-    color: #9b9b9b; */
     font-size: 1.3rem;
     font-weight: lighter; 
     color: rgb(60, 60, 60);

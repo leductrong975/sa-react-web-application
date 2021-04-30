@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import './CreateCampaign.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -395,7 +395,7 @@ function CreateCampaign() {
               }}
             />
             {article.hasFeatureImage ?
-              <img src={article.featureImage} className="FeatureImg" /> : ''
+              <img src={article.featureImage} alt="Campaign" className="FeatureImg" /> : ''
             }
             <ReactQuill
               // ref={(el) => quill = el}
