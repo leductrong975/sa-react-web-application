@@ -10,13 +10,19 @@ function ListCampaigns() {
   const [articles, setArticles] = useState([]);
 
   const getMyArticles = async () => {
-    const docs = await db.collection('Articles').limit(10).get();
+    // const docs = await db.collection('Articles').limit(10).get();
+    const docs = await db.collection('Articles')
+      .where('createUserID', '==', app.auth().currentUser.uid)
+      .where('isPublish', '==', true).get();
     if (docs.empty) {
       setIsLoaded(true);
+      console.log('hi in');
       return;
     }
+
     let allArticles = [];
     docs.forEach(doc => {
+      console.log(doc.data());
       allArticles.push({
         id: doc.id,
         ...doc.data()
@@ -24,6 +30,7 @@ function ListCampaigns() {
     });
     setArticles(allArticles);
     setIsLoaded(true);
+    // console.log(articles);
   }
 
   useEffect(() => {
@@ -33,7 +40,7 @@ function ListCampaigns() {
   return (
     <>
       <div className='cards'>
-        <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1>
+        {/* <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1> */}
         <div className="cards__container">
           <div className="cards__wrapper">
             {
@@ -42,24 +49,18 @@ function ListCampaigns() {
                   articles.map((a, index) => {
                     return (
                       <>
-                        {a.isPublish ?
-                          a.createUserID === app.auth().currentUser.uid ?
-                            <ul className="cards__items">
-                              <ListCampaignItem
-                                src={a.featureImage}
-                                text={a.content}
-                                label={a.title}
-                                path={'/campaign-page-detail/' + a.id}
-                              >
-                              </ListCampaignItem>
-                            </ul>
-                            : ''
-                          : ''
-                        }
+                        <ul className="cards__items">
+                          <ListCampaignItem
+                            src={a.featureImage}
+                            text={a.content}
+                            label={a.title}
+                            path={'/campaign-page-detail/' + a.id}
+                          />
+                        </ul>
                       </>
                     )
                   })
-                  : "article not found "
+                  : 'You have no campaign'
                 : "loading"
             }
           </div>

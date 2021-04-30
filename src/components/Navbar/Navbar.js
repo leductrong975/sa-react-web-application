@@ -31,8 +31,8 @@ function Navbar(props) {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/list-campaigns' className='nav-links' onClick={closeMenu}>
-              List Campaign
+            <Link to='/your-campaigns' className='nav-links' onClick={closeMenu}>
+              Your Campaigns
                         </Link>
           </li>
           {props.adminRole ?

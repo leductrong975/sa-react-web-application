@@ -81,9 +81,9 @@ function AdminOnly() {
                             </ListCampaignItem>
                             <span>
                               <button className="button__approve" onClick={() => {
-                                setApproveArticleID(a.id)
-                                document.getElementsByTagName('body')[0].style.overflow = "hidden"
-                                document.getElementById('approveModal').showModal()
+                                setApproveArticleID(a.id);
+                                document.getElementsByTagName('body')[0].style.overflow = "hidden";
+                                document.getElementById('approveModal').showModal();
                               }}>APPROVE</button>
                               <button className="button__not__approve" onClick={() => {
                                 setRemoveArticleID(a.id)

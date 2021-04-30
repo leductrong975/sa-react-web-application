@@ -8,31 +8,26 @@ function CampaignCards() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [articles, setArticles] = useState([])
 
+  const getMyArticles = async () => {
+    const docs = await db.collection('Articles').limit(10).get();
+    if (docs.empty) {
+      setIsLoaded(true);
+      return;
+    }
+    let allArticles = [];
+    docs.forEach(doc => {
+      allArticles.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+    setArticles(allArticles);
+    setIsLoaded(true);
+  }
+
   useEffect(() => {
     getMyArticles()
-  })
-
-  const getMyArticles = () => {
-    db.collection('Articles')
-      .limit(10)
-      .get()
-      .then(docs => {
-        if (!docs.empty) {
-          let allArticles = []
-          docs.forEach(doc => {
-            allArticles.push({
-              id: doc.id,
-              ...doc.data()
-            })
-          })
-          setArticles(allArticles)
-          setIsLoaded(true)
-        } else {
-          setArticles([])
-          setIsLoaded(true)
-        }
-      })
-  }
+  }, []);
 
   return (
     <>
