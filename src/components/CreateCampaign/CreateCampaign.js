@@ -3,7 +3,7 @@ import './CreateCampaign.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import app, { auth, storage } from '../../firebase';
-import Compressor from "compressorjs";
+// import Compressor from "compressorjs";
 import { v4 as uuidv4 } from "uuid";
 import { useHistory } from 'react-router-dom';
 
@@ -272,26 +272,13 @@ function CreateCampaign() {
   ];
 
   const onChangeCampaignTitle = (title) => {
-    // this.setState({
-    //   article: {
-    //     ...this.state.article,
-    //     title: value
-    //   }
-    // })
     setArticle({
       ...article,
       title: title
     });
-    // console.log(article);
   }
 
   const onChangeCampaignContent = (content) => {
-    // this.setState({
-    //   article: {
-    //     ...this.state.article,
-    //     content: value
-    //   }
-    // })
     setArticle({
       ...article,
       content: content
@@ -299,18 +286,9 @@ function CreateCampaign() {
   }
 
   const onClickPublish = async () => {
-    // const article = this.state.article;
-    // article.createUserID = auth.currentUser.uid;
-    // console.log(article);
-    // this.setState({
-    //   article: {
-    //     ...article,
-    //     isPublish: false
-    //   }
-    // })
-
     await db.collection("Articles").add(article);
-    // history.push('/list-campaigns');
+    history.push('/your-campaigns');
+
   }
 
   // const fileCompress = (file) => {
@@ -367,15 +345,13 @@ function CreateCampaign() {
     return new Promise(async (resolve, reject) => {
       const file = e.target.files[0];
       const fileName = uuidv4();
-      storage.ref().child("Articles/" + fileName).put(file)
-        .then(async snapshot => {
-          const downloadURL = await storage.ref().child("Articles/" + fileName).getDownloadURL()
-          console.log(downloadURL)
-          resolve({
-            success: true,
-            data: { link: downloadURL }
-          })
-        })
+      await storage.ref().child("Articles/" + fileName).put(file);
+      const downloadURL = await storage.ref().child("Articles/" + fileName).getDownloadURL()
+      console.log(downloadURL)
+      resolve({
+        success: true,
+        data: { link: downloadURL }
+      })
     })
   }
 

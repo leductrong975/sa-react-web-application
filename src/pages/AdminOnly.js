@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../App.css';
 import ListCampaignItem from '../components/ListCampaignItem/ListCampaignItem';
 import app from '../firebase';
@@ -12,10 +13,11 @@ function AdminOnly() {
   const [articles, setArticles] = useState([]);
   const [removeArticleID, setRemoveArticleID] = useState("");
   const [approveArticleID, setApproveArticleID] = useState("");
+  const history = useHistory();
 
 
   const getMyArticles = async () => {
-    const docs = await db.collection('Articles').limit(10).get();
+    const docs = await db.collection('Articles').get();
     if (docs.empty) {
       setIsLoaded(true);
       return;
@@ -50,6 +52,7 @@ function AdminOnly() {
         isPublish: true
       });
     }
+    history.push('/adminonly');
   }
 
   return (
@@ -64,42 +67,40 @@ function AdminOnly() {
         <h1>Admin Checking Campaign</h1>
         <div className="cards__container">
           <div className="cards__wrapper">
-            {
-              isLoaded ?
-                articles.length > 0 ?
-                  articles.map((a, index) => {
-                    return (
-                      <>
-                        {!a.isPublish ?
-                          <div className="list__of__campaigns">
-                            <ListCampaignItem
-                              src={a.featureImage}
-                              text={a.content}
-                              label={a.title}
-                              path={'/adminonly/edit-campaign/' + a.id}
-                            >
-                            </ListCampaignItem>
-                            <span>
-                              <button className="button__approve" onClick={() => {
-                                setApproveArticleID(a.id);
-                                document.getElementsByTagName('body')[0].style.overflow = "hidden";
-                                document.getElementById('approveModal').showModal();
-                              }}>APPROVE</button>
-                              <button className="button__not__approve" onClick={() => {
-                                setRemoveArticleID(a.id)
-                                document.getElementsByTagName('body')[0].style.overflow = "hidden"
-                                document.getElementById('deleteModal').showModal()
-                              }}>NOT APPROVE</button>
-                            </span>
-                          </div>
-                          : ''
-                        }
-                      </>
-                    )
-                  })
-                  : "article not found "
-                : "loading"
-            }
+            {isLoaded ?
+              articles.length > 0 ?
+                articles.map((a, index) => {
+                  return (
+                    <>
+                      {!a.isPublish ?
+                        <div className="list__of__campaigns">
+                          <ListCampaignItem
+                            src={a.featureImage}
+                            text={a.content}
+                            label={a.title}
+                            path={'/adminonly/edit-campaign/' + a.id}
+                          >
+                          </ListCampaignItem>
+                          <span>
+                            <button className="button__approve" onClick={() => {
+                              setApproveArticleID(a.id);
+                              document.getElementsByTagName('body')[0].style.overflow = "hidden";
+                              document.getElementById('approveModal').showModal();
+                            }}>APPROVE</button>
+                            <button className="button__not__approve" onClick={() => {
+                              setRemoveArticleID(a.id)
+                              document.getElementsByTagName('body')[0].style.overflow = "hidden"
+                              document.getElementById('deleteModal').showModal()
+                            }}>NOT APPROVE</button>
+                          </span>
+                        </div>
+                        : ''
+                      }
+                    </>
+                  )
+                })
+                : "No article"
+              : "loading"}
           </div>
         </div>
       </div>
