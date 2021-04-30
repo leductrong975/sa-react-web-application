@@ -43,7 +43,7 @@ function ListCampaigns() {
                     return (
                       <>
                         {a.isPublish ?
-                          a.createUserID == app.auth().currentUser.uid ?
+                          a.createUserID === app.auth().currentUser.uid ?
                             <ul className="cards__items">
                               <ListCampaignItem
                                 src={a.featureImage}

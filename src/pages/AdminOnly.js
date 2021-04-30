@@ -16,7 +16,7 @@ function AdminOnly() {
 
   const getMyArticles = async () => {
     const docs = await db.collection('Articles').limit(10).get();
-    if (!docs.empty) {
+    if (docs.empty) {
       setIsLoaded(true);
       return;
     }

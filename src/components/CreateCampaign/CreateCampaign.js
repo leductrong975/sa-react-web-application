@@ -233,7 +233,7 @@ function CreateCampaign() {
     isPublish: false,
     lastModified: new Date(),
     hasFeatureImage: false,
-    createUserID: '',
+    createUserID: auth.currentUser.uid,
   });
   const history = useHistory();
 
@@ -282,6 +282,7 @@ function CreateCampaign() {
       ...article,
       title: title
     });
+    // console.log(article);
   }
 
   const onChangeCampaignContent = (content) => {
@@ -307,16 +308,9 @@ function CreateCampaign() {
     //     isPublish: false
     //   }
     // })
-    console.log(auth.currentUser.uid);
-    setArticle({
-      ...article,
-      createUserID: auth.currentUser.uid
-    });
-    console.log(article.createUserID);
-    console.log('before');
+
     await db.collection("Articles").add(article);
-    console.log('hi');
-    history.push('/list-campaigns');
+    // history.push('/list-campaigns');
   }
 
   // const fileCompress = (file) => {
@@ -388,7 +382,7 @@ function CreateCampaign() {
   return (
     <>
       <div className='AuthContainer'>
-        <h1>New Campaign</h1>
+        <h1>Create New Campaign</h1>
         {/* <form className='AuthForm' onSubmit={handleSubmit}> */}
         <form className='AuthForm'>
           <div className='InputFieldContainer'>
