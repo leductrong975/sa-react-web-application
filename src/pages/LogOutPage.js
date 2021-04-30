@@ -8,12 +8,12 @@ function LogOutPage() {
   const history = useHistory();
 
   function logOut() {
-    logout()
-    history.push('/')
+    logout();
+    history.push('/');
   }
 
   function logIn() {
-    history.push('/log-in')
+    history.push('/log-in');
   }
 
   return (

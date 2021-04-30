@@ -17,7 +17,7 @@ function AdminOnly() {
 
   useEffect(() => {
     const getMyArticles = async () => {
-      const docs = await db.collection('Articles').get();
+      const docs = await db.collection('Articles').where('isPublish', '==', false).get();
       if (docs.empty) {
         setIsLoaded(true);
         return;
@@ -49,8 +49,12 @@ function AdminOnly() {
       await db.collection("Articles").doc(approveArticleID).update({
         isPublish: true
       });
+      // console.log(articles.filter(article => article.id !== approveArticleID));
+      setArticles(articles.filter(article => article.id !== approveArticleID));
+      // console.log(articles);
     }
-    history.push('/adminonly');
+    // history.push('/adminonly');
+    // window.location.reload();
   }
 
   return (
