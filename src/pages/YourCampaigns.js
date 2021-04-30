@@ -3,11 +3,13 @@ import '../App.css';
 import ListCampaignItem from '../components/ListCampaignItem/ListCampaignItem';
 import app from '../firebase';
 import 'firebase/firestore';
+import DeleteCampaignModal from "../components/DeleteCampaignModal/DeleteCampaignModal";
 
 function ListCampaigns() {
   const db = app.firestore();
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
+  const [removeArticleID, setRemoveArticleID] = useState("");
 
   useEffect(() => {
     const getMyArticles = async () => {
@@ -34,10 +36,23 @@ function ListCampaigns() {
     getMyArticles();
   }, [db]);
 
+  const removeCampaign = async () => {
+    if (removeArticleID !== '') {
+      await db.collection("Articles").doc(removeArticleID).delete();
+      let newAllArticles = articles;
+      newAllArticles = newAllArticles.filter(e => e.id !== removeArticleID);
+      setArticles(newAllArticles);
+      setRemoveArticleID("");
+    }
+  }
+
   return (
     <>
+      <DeleteCampaignModal
+        removeCampaign={removeCampaign}
+      />
       <div className='cards'>
-        {/* <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1> */}
+        <h1>My Campaigns</h1>
         <div className="cards__container">
           <div className="cards__wrapper">
             {
@@ -53,6 +68,20 @@ function ListCampaigns() {
                             label={a.title}
                             path={'/campaign-page-detail/' + a.id}
                           />
+                          <span>
+                            <div>
+                              <h4>Approved Or Not</h4>
+                              {a.isPublish ? 
+                                <p>Yes</p> : <p>No</p>
+                              }
+                            </div>
+                          
+                            <button className="button__not__approve" onClick={() => {
+                              setRemoveArticleID(a.id)
+                              document.getElementsByTagName('body')[0].style.overflow = "hidden"
+                              document.getElementById('deleteModal').showModal()
+                            }}>Delete</button>
+                          </span>
                         </ul>
                       </>
                     )
