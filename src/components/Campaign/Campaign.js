@@ -15,7 +15,7 @@ function Campaign() {
       <h1>SOCIAL AWARENESS</h1>
       <p>What are you waiting for?</p>
       <div className='campaign-buttons'>
-        <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
+        <MyButton linkNe='/all-campaigns' className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
           Join Us
                 </MyButton>
         <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>

@@ -64,18 +64,11 @@ function ListCampaigns() {
                         <ul className="cards__items">
                           <ListCampaignItem
                             src={a.featureImage}
-                            text={a.content}
+                            text={'Approved Or Not: '+ (a.isPublish? 'Yes' : 'No')}
                             label={a.title}
                             path={'/campaign-page-detail/' + a.id}
                           />
-                          <span>
-                            <div>
-                              <h4>Approved Or Not</h4>
-                              {a.isPublish ? 
-                                <p>Yes</p> : <p>No</p>
-                              }
-                            </div>
-                          
+                          <span className="span__ne">
                             <button className="button__not__approve" onClick={() => {
                               setRemoveArticleID(a.id)
                               document.getElementsByTagName('body')[0].style.overflow = "hidden"

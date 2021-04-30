@@ -12,6 +12,7 @@ import SignUpPage from './pages/SignUpPage';
 import { AuthProvider, useAuth } from './contexts/AuthContext/AuthContext';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import AdminOnly from './pages/AdminOnly';
+import AllCampaigns from './pages/AllCampaigns';
 
 function App() {
   const [adminRole, setAdminRole] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <Navbar adminRole={adminRole} />
         <Switch>
           <Route path='/' exact component={HomePage} />
+          <Route path='/all-campaigns' exact component={AllCampaigns} />
           {currentUser ? <Route path='/your-campaigns' exact component={YourCampaigns} /> : null}
           {adminRole ? <Route path='/adminonly' exact component={AdminOnly} /> : null}
           <Route path='/create-campaign' exact component={CreateCampaignPage} />
