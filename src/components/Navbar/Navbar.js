@@ -7,7 +7,7 @@ function Navbar(props) {
   const [click, setClick] = React.useState(false);
   const checkingClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
-  const { currentUser } = useAuth()
+  const { currentUser } = useAuth();
 
   return (
     <nav className='navbar'>
@@ -25,16 +25,21 @@ function Navbar(props) {
               Home
                         </Link>
           </li>
-          <li className='nav-item'>
-            <Link to='/create-campaign' className='nav-links' onClick={closeMenu}>
-              Create Campaign
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link to='/your-campaigns' className='nav-links' onClick={closeMenu}>
-              Your Campaigns
-                        </Link>
-          </li>
+          {currentUser ?
+            <>
+              <li className='nav-item'>
+                <Link to='/create-campaign' className='nav-links' onClick={closeMenu}>
+                  Create Campaign
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link to='/your-campaigns' className='nav-links' onClick={closeMenu}>
+                  Your Campaigns
+                </Link>
+              </li>
+            </>
+            : null
+          }
           {props.adminRole ?
             <li className='nav-item'>
               <Link to='/adminonly' className='nav-links' onClick={closeMenu}>
@@ -42,17 +47,17 @@ function Navbar(props) {
                             </Link>
             </li> : null
           }
-          {currentUser === null ?
-            <li className='nav-item'>
-              <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
-                Log In
-                            </Link>
-            </li>
-            :
+          {currentUser ?
             <li className='nav-item'>
               <Link to='/log-out' className='nav-links-mobile' onClick={closeMenu}>
                 {currentUser.email}
               </Link>
+            </li>
+            :
+            <li className='nav-item'>
+              <Link to='/log-in' className='nav-links-mobile' onClick={closeMenu}>
+                Log In
+                            </Link>
             </li>
           }
         </ul>
