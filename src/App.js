@@ -15,7 +15,7 @@ import AdminOnly from './pages/AdminOnly';
 
 function App() {
   const [adminRole, setAdminRole] = useState(false);
-  const { currentUser } = useAuth()
+  const { currentUser } = useAuth();
   if (currentUser !== null) {
     currentUser.getIdTokenResult().then((idTokenResult) => {
       if (idTokenResult.claims.type === 'administrator') {

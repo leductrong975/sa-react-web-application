@@ -1,30 +1,29 @@
-import test from './test.jpg';
+import React, { useEffect } from 'react';
 import './CampaignDetail.css';
 import { MyButton } from '../MyButton/MyButton';
-import { useLocation, useParams } from 'react-router-dom';
-import { React, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext/AuthContext';
-import app, { auth } from '../../firebase';
+import app from '../../firebase';
 
 function CampaignDetail() {
   const [data, setData] = useState({});
   const { createUserID } = useParams();
-  const db = app.firestore();
-  const getData = async () => {
-    const campaign = await db.collection('Articles').doc(createUserID);
-    const docData = (await campaign.get()).data();
-    // console.log(docData);
-    setData(docData);
-  }
+
   useEffect(() => {
+    const db = app.firestore();
+    const getData = async () => {
+      const campaign = await db.collection('Articles').doc(createUserID);
+      const docData = (await campaign.get()).data();
+      // console.log(docData);
+      setData(docData);
+    }
     getData();
-  }, []);
+  }, [createUserID]);
 
   return (
     <>
       <div className="CampaignDetail">
-        <img className="CampaignDetailImage" src={data.featureImage} />
+        <img className="CampaignDetailImage" src={data.featureImage} alt="Campaign" />
         <div className="CampaignDetailContent">
           <div className='row'>
             <div className='column1'>

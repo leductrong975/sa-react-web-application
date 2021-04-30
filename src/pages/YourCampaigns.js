@@ -9,33 +9,30 @@ function ListCampaigns() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
 
-  const getMyArticles = async () => {
-    // const docs = await db.collection('Articles').limit(10).get();
-    const docs = await db.collection('Articles')
-      .where('createUserID', '==', app.auth().currentUser.uid)
-      .where('isPublish', '==', true).get();
-    if (docs.empty) {
-      setIsLoaded(true);
-      console.log('hi in');
-      return;
-    }
-
-    let allArticles = [];
-    docs.forEach(doc => {
-      console.log(doc.data());
-      allArticles.push({
-        id: doc.id,
-        ...doc.data()
-      });
-    });
-    setArticles(allArticles);
-    setIsLoaded(true);
-    // console.log(articles);
-  }
-
   useEffect(() => {
+    const getMyArticles = async () => {
+      const docs = await db.collection('Articles')
+        .where('createUserID', '==', app.auth().currentUser.uid)
+        .where('isPublish', '==', true).get();
+      if (docs.empty) {
+        setIsLoaded(true);
+        console.log('hi in');
+        return;
+      }
+
+      let allArticles = [];
+      docs.forEach(doc => {
+        console.log(doc.data());
+        allArticles.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      setArticles(allArticles);
+      setIsLoaded(true);
+    }
     getMyArticles();
-  }, []);
+  }, [db]);
 
   return (
     <>

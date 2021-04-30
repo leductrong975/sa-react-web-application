@@ -4,29 +4,28 @@ import './CampaignCards.css';
 import app from '../../firebase';
 
 function CampaignCards() {
-  const db = app.firestore()
   const [isLoaded, setIsLoaded] = useState(false)
   const [articles, setArticles] = useState([])
 
-  const getMyArticles = async () => {
-    const docs = await db.collection('Articles').limit(10).get();
-    if (docs.empty) {
-      setIsLoaded(true);
-      return;
-    }
-    let allArticles = [];
-    docs.forEach(doc => {
-      allArticles.push({
-        id: doc.id,
-        ...doc.data()
-      });
-    });
-    setArticles(allArticles);
-    setIsLoaded(true);
-  }
-
   useEffect(() => {
-    getMyArticles()
+    const db = app.firestore()
+    const getMyArticles = async () => {
+      const docs = await db.collection('Articles').limit(10).get();
+      if (docs.empty) {
+        setIsLoaded(true);
+        return;
+      }
+      let allArticles = [];
+      docs.forEach(doc => {
+        allArticles.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      setArticles(allArticles);
+      setIsLoaded(true);
+    }
+    getMyArticles();
   }, []);
 
   return (
@@ -63,7 +62,7 @@ function CampaignCards() {
                               {index + 1}
                             </td>
                             <td className="td__ne">
-                              <img src={a.featureImage} className="image__ne" />
+                              <img src={a.featureImage} alt="Campaign" className="image__ne" />
                             </td>
                             <td className="td__ne">
                               <p>{a.title}</p>

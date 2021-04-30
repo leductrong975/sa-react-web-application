@@ -13,7 +13,7 @@ function AuthForm(props) {
   const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [emailVerificationSent, setEmailVerificationSent] = useState('')
+  const [emailVerificationSent, setEmailVerificationSent] = useState('');
   const { signup, login } = useAuth();
   const history = useHistory();
 
@@ -27,51 +27,51 @@ function AuthForm(props) {
       'Don\'t have an account?',
       '/sign-up',
       'Sign Up'
-    ]
+    ];
 
   const signUpCheck = () =>
     RegExp('[a-z]').test(passwordRef.current.value) &&
     RegExp('[A-Z]').test(passwordRef.current.value) &&
     RegExp('[0-9]').test(passwordRef.current.value) &&
-    8 <= passwordRef.current.value.length <= 20
+    8 <= passwordRef.current.value.length <= 20;
 
 
   const passwordConformationCheck = () =>
-    passwordRef.current.value === passwordConfirmRef.current.value
+    passwordRef.current.value === passwordConfirmRef.current.value;
 
-  const showPassword = () => setCheck(!check)
+  const showPassword = () => setCheck(!check);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       setError('');
       if (props.label !== 'Sign Up') {
-        setLoading(true)
-        const verified = await login(emailRef.current.value, passwordRef.current.value)
+        setLoading(true);
+        const verified = await login(emailRef.current.value, passwordRef.current.value);
         if (!verified) {
-          setError('Email is not verified!')
-          setLoading(false)
-          return
+          setError('Email is not verified!');
+          setLoading(false);
+          return;
         }
-        setLoading(false)
-        history.push('/')
-        return
+        setLoading(false);
+        history.push('/');
+        return;
       }
       if (!passwordConformationCheck()) {
-        setError('Password Conformation does not match!')
-        return
+        setError('Password Conformation does not match!');
+        return;
       }
       if (!signUpCheck()) {
-        setError('Password does not meet requirements')
-        return
+        setError('Password does not meet requirements');
+        return;
       }
-      setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
-      setEmailVerificationSent('A Verification Email has been sent to your inbox!')
-      setLoading(false)
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      setEmailVerificationSent('A Verification Email has been sent to your inbox!');
+      setLoading(false);
     } catch (e) {
-      setError(`Failed to ${props.label}! Check your email and password again!`)
-      setLoading(false)
+      setError(`Failed to ${props.label}! Check your email and password again!`);
+      setLoading(false);
     }
   }
 
@@ -123,5 +123,5 @@ function AuthForm(props) {
   )
 }
 
-export default AuthForm
+export default AuthForm;
 
