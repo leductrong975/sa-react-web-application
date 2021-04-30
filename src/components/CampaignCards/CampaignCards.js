@@ -31,7 +31,7 @@ function CampaignCards() {
   return (
     <>
       <div className='cards'>
-        <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGN</h1>
+        <h1>OUR RECENTLY SOCIAL AWARENESS CAMPAIGNS</h1>
         <div className="cards__container">
           <table className="table__ne">
             <tr className="tr__ne">

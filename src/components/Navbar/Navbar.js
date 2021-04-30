@@ -25,6 +25,11 @@ function Navbar(props) {
               Home
                         </Link>
           </li>
+          <li className='nav-item'>
+            <Link to='/all-campaigns' className='nav-links' onClick={closeMenu}>
+              All Campaigns
+                        </Link>
+          </li>
           {currentUser ?
             <>
               <li className='nav-item'>

@@ -15,6 +15,11 @@
   height: 30px;
 }
 
+.span__ne {
+  display: inline-table;
+  text-align: center;
+}
+
 .button__not__approve {
   margin: 10px 20px 20px 20px;
   width: 100px;
