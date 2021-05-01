@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  text-align: center;
+  font-weight: bold;
+  /* color: blue; */
+}
+
+.content {
+  font-weight: lighter;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+}
+
+.confirm {
+  flex: 0.5;
+  margin: 5px;
+}
+
+.cancel {
+  flex: 0.5;
+  margin: 5px;
+}

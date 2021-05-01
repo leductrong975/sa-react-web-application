@@ -80,7 +80,7 @@ function AdminOnly() {
                             src={a.featureImage}
                             text={a.content}
                             label={a.title}
-                            path={'/adminonly/edit-campaign/' + a.id}
+                            path={'/campaign-page-detail/' + a.id}
                           >
                           </ListCampaignItem>
                           <span>
