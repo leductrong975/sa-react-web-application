@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import '../App.css';
 import ListCampaignItem from '../components/ListCampaignItem/ListCampaignItem';
 import app from '../firebase';
@@ -13,7 +13,7 @@ function AdminOnly() {
   const [articles, setArticles] = useState([]);
   const [removeArticleID, setRemoveArticleID] = useState("");
   const [approveArticleID, setApproveArticleID] = useState("");
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     const getMyArticles = async () => {

@@ -8,7 +8,6 @@ function Navbar(props) {
   const checkingClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
   const { currentUser } = useAuth();
-
   return (
     <nav className='navbar'>
       <div className='navbar-container'>
@@ -30,7 +29,7 @@ function Navbar(props) {
               All Campaigns
                         </Link>
           </li>
-          {currentUser ?
+          {currentUser && !props.adminRole ?
             <>
               <li className='nav-item'>
                 <Link to='/create-campaign' className='nav-links' onClick={closeMenu}>
@@ -45,7 +44,7 @@ function Navbar(props) {
             </>
             : null
           }
-          {props.adminRole ?
+          {currentUser && props.adminRole ?
             <li className='nav-item'>
               <Link to='/adminonly' className='nav-links' onClick={closeMenu}>
                 Admin Only

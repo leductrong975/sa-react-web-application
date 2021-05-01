@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -17,13 +17,20 @@ import AllCampaigns from './pages/AllCampaigns';
 function App() {
   const [adminRole, setAdminRole] = useState(false);
   const { currentUser } = useAuth();
-  if (currentUser !== null) {
-    currentUser.getIdTokenResult().then((idTokenResult) => {
-      if (idTokenResult.claims.type === 'administrator') {
-        setAdminRole(true);
-      }
-    })
-  };
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      console.log('if');
+      currentUser.getIdTokenResult().then((idTokenResult) => {
+        if (idTokenResult.claims.type === 'administrator') {
+          setAdminRole(true);
+        }
+      })
+    } else {
+      console.log('else');
+      setAdminRole(false);
+    };
+  }, [currentUser]);
 
   return (
     <AuthProvider>
