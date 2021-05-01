@@ -59,12 +59,13 @@ function AdminOnly() {
 
   return (
     <>
-      <DeleteCampaignModal
+      {/* <DeleteCampaignModal
         removeCampaign={removeCampaign}
       />
       <ApproveCampaignModal
         approveCampaign={approveCampaign}
-      />
+      /> */}
+
       <div className='cards'>
         <h1>Admin Checking Campaign</h1>
         <div className="cards__container">
