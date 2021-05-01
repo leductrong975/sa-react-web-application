@@ -19,17 +19,15 @@ function App() {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (currentUser !== null) {
-      console.log('if');
-      currentUser.getIdTokenResult().then((idTokenResult) => {
-        if (idTokenResult.claims.type === 'administrator') {
-          setAdminRole(true);
-        }
-      })
-    } else {
-      console.log('else');
+    if (currentUser === null) {
       setAdminRole(false);
-    };
+      return;
+    }
+    currentUser.getIdTokenResult().then((idTokenResult) => {
+      if (idTokenResult.claims.type === 'administrator') {
+        setAdminRole(true);
+      }
+    });
   }, [currentUser]);
 
   return (
@@ -40,7 +38,7 @@ function App() {
           <Route path='/' exact component={HomePage} />
           <Route path='/all-campaigns' exact component={AllCampaigns} />
           {currentUser ? <Route path='/your-campaigns' exact component={YourCampaigns} /> : null}
-          {adminRole ? <Route path='/adminonly' exact component={AdminOnly} /> : null}
+          {adminRole ? <Route path='/admin-only' exact component={AdminOnly} /> : null}
           <Route path='/create-campaign' exact component={CreateCampaignPage} />
           <Route path='/log-in' exact component={LogInPage} />
           <Route path='/log-out' exact component={LogOutPage} />

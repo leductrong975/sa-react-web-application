@@ -17,8 +17,8 @@ function Campaign() {
       <div className='campaign-buttons'>
         <MyButton linkNe='/all-campaigns' className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
           Join Us
-                </MyButton>
-        <MyButton className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
+        </MyButton>
+        <MyButton linkNe='/all-campaigns' className='buttons' buttonSlyle='btn--outline' buttonSize='btn--large'>
           Watch Trailer <i className='far fa-play-circle' />
         </MyButton>
       </div>

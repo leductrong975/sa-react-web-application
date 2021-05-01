@@ -46,7 +46,7 @@ function Navbar(props) {
           }
           {currentUser && props.adminRole ?
             <li className='nav-item'>
-              <Link to='/adminonly' className='nav-links' onClick={closeMenu}>
+              <Link to='/admin-only' className='nav-links' onClick={closeMenu}>
                 Admin Only
                             </Link>
             </li> : null

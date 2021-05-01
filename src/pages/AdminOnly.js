@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
 import '../App.css';
 import ListCampaignItem from '../components/ListCampaignItem/ListCampaignItem';
 import app from '../firebase';
 import 'firebase/firestore';
-import DeleteCampaignModal from "../components/DeleteCampaignModal/DeleteCampaignModal";
-import ApproveCampaignModal from "../components/ApproveCampaignModal/ApproveCampaign";
+import Modal from '../components/Modal/Modal';
 
 function AdminOnly() {
   const db = app.firestore();
@@ -13,7 +11,6 @@ function AdminOnly() {
   const [articles, setArticles] = useState([]);
   const [removeArticleID, setRemoveArticleID] = useState("");
   const [approveArticleID, setApproveArticleID] = useState("");
-  // const history = useHistory();
 
   useEffect(() => {
     const getMyArticles = async () => {
@@ -49,23 +46,20 @@ function AdminOnly() {
       await db.collection("Articles").doc(approveArticleID).update({
         isPublish: true
       });
-      // console.log(articles.filter(article => article.id !== approveArticleID));
       setArticles(articles.filter(article => article.id !== approveArticleID));
-      // console.log(articles);
     }
-    // history.push('/adminonly');
-    // window.location.reload();
   }
 
   return (
     <>
-      {/* <DeleteCampaignModal
-        removeCampaign={removeCampaign}
+      <Modal
+        callBack={approveCampaign}
+        id='approve'
       />
-      <ApproveCampaignModal
-        approveCampaign={approveCampaign}
-      /> */}
-
+      <Modal
+        callBack={removeCampaign}
+        id='refuse'
+      />
       <div className='cards'>
         <h1>Admin Checking Campaign</h1>
         <div className="cards__container">
@@ -74,7 +68,7 @@ function AdminOnly() {
               articles.length > 0 ?
                 articles.map((a, index) => {
                   return (
-                    <>
+                    <div key={index}>
                       {!a.isPublish ?
                         <div className="list__of__campaigns">
                           <ListCampaignItem
@@ -84,22 +78,22 @@ function AdminOnly() {
                             path={'/campaign-page-detail/' + a.id}
                           >
                           </ListCampaignItem>
-                          <span>
-                            <button className="button__approve" onClick={() => {
-                              setApproveArticleID(a.id);
-                              document.getElementsByTagName('body')[0].style.overflow = "hidden";
-                              document.getElementById('approveModal').showModal();
-                            }}>APPROVE</button>
-                            <button className="button__not__approve" onClick={() => {
-                              setRemoveArticleID(a.id)
-                              document.getElementsByTagName('body')[0].style.overflow = "hidden"
-                              document.getElementById('deleteModal').showModal()
-                            }}>NOT APPROVE</button>
-                          </span>
+                          {/* <span> */}
+                          <button className="button__approve" onClick={() => {
+                            setApproveArticleID(a.id);
+                            document.getElementsByTagName('body')[0].style.overflow = "hidden";
+                            document.getElementById('approve').showModal();
+                          }}>APPROVE</button>
+                          <button className="button__not__approve" onClick={() => {
+                            setRemoveArticleID(a.id)
+                            document.getElementsByTagName('body')[0].style.overflow = "hidden"
+                            document.getElementById('refuse').showModal();
+                          }}>NOT APPROVE</button>
+                          {/* </span> */}
                         </div>
                         : ''
                       }
-                    </>
+                    </div>
                   )
                 })
                 : "No article"
